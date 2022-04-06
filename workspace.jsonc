@@ -30,6 +30,10 @@
     "defaultScope": "croixbleue.devops"
   },
   /**
+    * configuration of the Bit workspace.
+    **/
+  "croixbleue.devops/netlify/react-app": {},
+  /**
    * main configuration for component dependency resolution.
    **/
   "teambit.dependencies/dependency-resolver": {
@@ -39,6 +43,7 @@
     "packageManager": "teambit.dependencies/pnpm",
     "policy": {
       "dependencies": {
+        "@teambit/cloud-providers.deployers.netlify": "0.0.8",
         "@teambit/react.eslint-config-bit-react": "~0.0.542",
         "@typescript-eslint/eslint-plugin": "4.29.3",
         "eslint-import-resolver-node": "0.3.6",
