@@ -1,4 +1,7 @@
-const baseConfig = require("@teambit/react/prettier/prettier.config");
+const baseConfig = require('@teambit/react/prettier/prettier.config');
 module.exports = {
-  ...baseConfig,
+    ...baseConfig,
+    endOfLine: 'lf',
+    tabWidth: 4,
+    printWidth: 120,
 };
