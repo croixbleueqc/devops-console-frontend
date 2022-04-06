@@ -30,8 +30,8 @@
     "defaultScope": "croixbleue.devops"
   },
   /**
-    * configuration of the Bit workspace.
-    **/
+   * Devops Console Frontend demo React-App deployed on Netlify
+   **/
   "croixbleue.devops/netlify/react-app": {},
   /**
    * main configuration for component dependency resolution.
