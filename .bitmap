@@ -11,15 +11,9 @@
 {
     "netlify/react-app": {
         "scope": "croixbleue.devops",
-        "version": "0.0.4",
+        "version": "0.0.5",
         "mainFile": "index.ts",
-        "rootDir": "devops/netlify/react-app",
-        "nextVersion": {
-            "version": "patch",
-            "message": "Test soft tag",
-            "username": "Guillaume ANTECH",
-            "email": "guillaume.antech@qc.croixbleue.ca"
-        }
+        "rootDir": "devops/netlify/react-app"
     },
     "$schema-version": "14.9.0"
 }
