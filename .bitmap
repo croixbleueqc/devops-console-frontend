@@ -10,7 +10,7 @@
 
 {
     "netlify/react-app": {
-        "scope": "",
+        "scope": "croixbleue.devops",
         "version": "0.0.1",
         "mainFile": "index.ts",
         "rootDir": "devops/netlify/react-app"
