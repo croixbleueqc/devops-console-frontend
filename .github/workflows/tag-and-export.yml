@@ -34,11 +34,11 @@ jobs:
             bit config set user.token $BIT_TOKEN
       - name: Install packages using bit
         run: bit install
-      - name: Hard-tag pending components
-        run: bit tag --persist
       - name: Compile bit app netlify/react-app
         run: bit compile netlify/react-app
-      - name: Tag/deploy bit app netlify/react-app
+      - name: Hard-tag pending components and app
+        run: bit tag --persist
+      - name: Tag bit app netlify/react-app (in case of no soft tag)
         run: bit tag netlify/react-app
       - name: Export components and app
         run: bit export
