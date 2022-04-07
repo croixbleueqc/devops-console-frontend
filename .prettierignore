@@ -21,6 +21,7 @@ pnpm-lock.yaml
 # versionning
 .gitignore
 .prettierignore
+.github/
 
 # misc
 .DS_Store
