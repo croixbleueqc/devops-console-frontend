@@ -1,0 +1,28 @@
+---
+description: A demo app that deploys using Netlify
+labels: ['react-app', 'app', 'netlify', 'demo', 'netlify']
+---
+
+Configure the app plugin on your workspace:
+
+```json
+"<your-scope>/netlify/react-app": {},
+```
+
+Head over to your app's `netlify.ts` file to configure your Netlify deployer:
+
+```ts
+const netlifyConfig: NetlifyOptions = {
+    team: 'my-team',
+    accessToken: process.env.NETLIFY_AUTH_TOKEN,
+    siteName: 'my-wonderful-site',
+};
+```
+
+Tag your app component to deploy it:
+
+```bash
+bit tag netlify/react-app
+```
+
+Visit the site you have set and view your newly deployed app. For example: https://devops-console-demo.netlify.app/.

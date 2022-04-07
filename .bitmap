@@ -9,5 +9,11 @@
  */
 
 {
+    "netlify/react-app": {
+        "scope": "",
+        "version": "0.0.1",
+        "mainFile": "index.ts",
+        "rootDir": "devops/netlify/react-app"
+    },
     "$schema-version": "14.9.0"
 }
