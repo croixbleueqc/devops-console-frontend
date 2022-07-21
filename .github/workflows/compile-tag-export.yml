@@ -3,8 +3,6 @@ name: CI
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 jobs:
   tag-and-export:
@@ -34,8 +32,8 @@ jobs:
             bit config set user.token $BIT_TOKEN
       - name: Install packages using bit
         run: bit install
-      - name: Compile bit app netlify/react-app
-        run: bit compile netlify/react-app
+      - name: Compile bit app and components
+        run: bit compile
       - name: Hard-tag pending components and app
         run: bit tag --persist
       - name: Tag bit app netlify/react-app (in case of no soft tag)
