@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  tag-and-export:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '--skip-ci')"
+    env:
+      BIT_TOKEN: ${{ secrets.BIT_TOKEN }}
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+      - name: Install Bit Version Manager 
+        run: npm i -g @teambit/bvm
+      - name: Install latest Bit version 
+        run: bvm install
+      - name: add bvm bin folder to path
+        run: echo "$HOME/bin" >> $GITHUB_PATH
+      - name: Set up bit config
+        run: |
+            bit config set analytics_reporting false
+            bit config set anonymous_reporting false
+            bit config set user.token $BIT_TOKEN
+      - name: Install packages using bit
+        run: bit install
+      - name: Compile bit app and components
+        run: bit compile
+      - name: Test bit app and components
+        run: bit test

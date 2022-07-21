@@ -9,6 +9,24 @@
  */
 
 {
+    "devops-console/app-bar": {
+        "scope": "",
+        "version": "",
+        "mainFile": "index.ts",
+        "rootDir": "devops/devops-console/app-bar",
+        "nextVersion": {
+            "version": "patch",
+            "message": "AppBar first version",
+            "username": "Guillaume ANTECH",
+            "email": "guillaume.antech@qc.croixbleue.ca"
+        },
+        "config": {
+            "teambit.react/react": {},
+            "teambit.envs/envs": {
+                "env": "teambit.react/react"
+            }
+        }
+    },
     "netlify/react-app": {
         "scope": "croixbleue.devops",
         "version": "0.0.5",

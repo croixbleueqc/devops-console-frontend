@@ -1,10 +1,38 @@
-# Welcome to your Bit Workspace
+# Devops Console Frontend Components
+TODO
+
+# Quick start
+
 
 To get started straight away run `bit start` and open [localhost:3000](http://localhost:3000). It may take a while to build the first time you run this command as it is building the whole User Interface for your development environment.
 
 ```bash
 bit start
 ```
+TODO
+
+
+# How to contribuate
+### Requirements
+
+ - A Bit account
+ - Be member of croixbleue organization in Bit (CroixBleue DevOps team is owner of croixbleueqc account [owner of the organisation])
+
+### Create a new component
+
+Create a component with Bit : https://bit.dev/docs/getting-started/composing/creating-components
+
+If needed, update Netlify example App with new component : TBD
+
+Publish component on Bit with a soft tag : TBD
+
+
+# How to use in project
+How to use croixbleue Bit components in your project ?
+https://bit.dev/docs/components/installing-components
+TODO
+
+# Bit scaffold details
 
 ## What's included
 
@@ -16,14 +44,6 @@ This is the main configuration file of your bit workspace. Here you can modify t
 
 This is an auto-generated file and includes the mapping of your components. There is one component included here. In order to remove this component you can run the following command.
 
-
-- **Demo Components**
-
-A folder (unless the --empty flag was used) containing demo components are included in this workspace. These components are used to demonstrate the different features of Bit. If you would like to remove these components you can run the following command.
-
-```jsx
-bit remove "ui/*" --delete files
-```
 
 This removes the components from the bitmap as well as removes the files.
 
