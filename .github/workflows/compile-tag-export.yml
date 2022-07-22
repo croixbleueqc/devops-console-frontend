@@ -48,8 +48,16 @@ jobs:
       - name: Export components and app
         if: "github.event_name == 'push'"
         run: bit export
+      - name: check for changes
+        if: "github.event_name == 'push'"
+        run: |
+          if git diff --quiet --exit-code -- .bitmap; then
+            echo "::set-env name=changes_exist::false"
+          else
+            echo "::set-env name=changes_exist::true"
+          fi
       - name: Commit changes made to .bitmap
-        if: "github.event_name == 'push' && git diff --quiet -- .bitmap"
+        if: "github.event_name == 'push' && env.changes_exist == 'true'"
         run: |
           git config --global user.name '${{ github.actor }}'
           git config --global user.email '${{ github.actor }}@users.noreply.github.com'
