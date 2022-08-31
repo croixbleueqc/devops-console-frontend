@@ -9,11 +9,78 @@
  */
 
 {
-    "devops-console/app-bar": {
-        "scope": "croixbleue.devops",
-        "version": "0.0.1",
+    "devops-console/apps/devops-console-app": {
+        "scope": "",
+        "version": "",
         "mainFile": "index.ts",
-        "rootDir": "devops/devops-console/app-bar"
+        "rootDir": "devops/devops-console/apps/devops-console-app",
+        "config": {
+            "teambit.react/react": {},
+            "teambit.envs/envs": {
+                "env": "teambit.react/react"
+            }
+        }
+    },
+    "devops-console/authentications/authentication": {
+        "scope": "",
+        "version": "",
+        "mainFile": "index.ts",
+        "rootDir": "devops/devops-console/authentications/authentication",
+        "config": {
+            "teambit.react/react": {},
+            "teambit.envs/envs": {
+                "env": "teambit.react/react"
+            }
+        }
+    },
+    "devops-console/authentications/authentication-oidc": {
+        "scope": "",
+        "version": "",
+        "mainFile": "index.ts",
+        "rootDir": "devops/devops-console/authentications/authentication-oidc",
+        "config": {
+            "teambit.react/react": {},
+            "teambit.envs/envs": {
+                "env": "teambit.react/react"
+            }
+        }
+    },
+    "devops-console/repositories/repository-bitbucket": {
+        "scope": "",
+        "version": "",
+        "mainFile": "index.ts",
+        "rootDir": "devops/devops-console/repositories/repository-bitbucket",
+        "config": {
+            "teambit.react/react": {},
+            "teambit.envs/envs": {
+                "env": "teambit.react/react"
+            }
+        }
+    },
+    "devops-console/ui/header-bar": {
+        "scope": "",
+        "version": "",
+        "mainFile": "index.ts",
+        "rootDir": "devops/devops-console/ui/header-bar",
+        "config": {
+            "teambit.envs/envs": {
+                "env": "teambit.react/react"
+            },
+            "teambit.react/react": {},
+            "teambit.compilation/compiler": {},
+            "teambit.component/dev-files": {},
+            "teambit.compositions/compositions": {},
+            "teambit.docs/docs": {},
+            "teambit.dependencies/dependency-resolver": {},
+            "teambit.pipelines/builder": {},
+            "teambit.component/renaming": {
+                "renamedFrom": {
+                    "scope": "croixbleue.devops",
+                    "name": "devops-console/app-bar",
+                    "version": "0.0.1"
+                }
+            }
+        }
     },
     "netlify/react-app": {
         "scope": "croixbleue.devops",
@@ -21,5 +88,5 @@
         "mainFile": "index.ts",
         "rootDir": "devops/netlify/react-app"
     },
-    "$schema-version": "14.9.0"
+    "$schema-version": "15.0.0"
 }

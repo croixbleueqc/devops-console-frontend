@@ -102,7 +102,7 @@ The exact command can be found directly on component page, on https://bit.cloud/
 
 Example:
 ```bash
-npm i @croixbleue/devops.devops-console.app-bar
+npm i @croixbleue/devops.devops-console.header-bar
 ```
 
 

@@ -1,23 +1,20 @@
 import React, { ReactNode } from 'react';
-import { default as MuiAppBar } from '@mui/material/AppBar';
+import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 
-export type AppBarProps = {
+export type HeaderBarProps = {
+    userIsConnected: boolean;
     appName?: string;
-    /**
-     * a node to be rendered in the special component.
-     */
     children?: ReactNode;
 };
 
-export function AppBar({ appName, children }: AppBarProps) {
+export function HeaderBar({ appName, children, userIsConnected }: HeaderBarProps) {
     return (
-        <MuiAppBar position="static">
+        <AppBar position="static">
             <Toolbar>
                 <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
                     <Menu />
@@ -28,18 +25,16 @@ export function AppBar({ appName, children }: AppBarProps) {
                     </Typography>
                 ) : null}
                 {children}
-                {/* <Button color="inherit" sx={{ flexGrow: 1 }}>
-                    Login
-                </Button> */}
                 <IconButton
                     size="large"
                     aria-label="account of current user"
-                    aria-controls="menu-appbar"
+                    aria-controls="menu-headerbar"
                     color="inherit"
                 >
                     <AccountCircle />
                 </IconButton>
+                {userIsConnected ? 'Connected' : 'Disconnected'}
             </Toolbar>
-        </MuiAppBar>
+        </AppBar>
     );
 }

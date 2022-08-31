@@ -1,21 +1,21 @@
 import React from 'react';
 
-import { AppBar } from './app-bar';
+import { HeaderBar } from './header-bar';
 import { Badge } from '@mui/material';
 import Notifications from '@mui/icons-material/Notifications';
 
-export const BasicAppBar = () => {
-    return <AppBar appName="DevOps Console"></AppBar>;
+export const BasicHeaderBar = () => {
+    return <HeaderBar appName="DevOps Console" userIsConnected={false}></HeaderBar>;
 };
 
-export const CustomContentAppBar = () => {
+export const CustomContentHeaderBar = () => {
     return (
         <div style={{ width: '100%' }}>
-            <AppBar appName="DevOps Console">
+            <HeaderBar appName="DevOps Console" userIsConnected={true}>
                 <Badge badgeContent={17} color="error">
                     <Notifications />
                 </Badge>
-            </AppBar>
+            </HeaderBar>
         </div>
     );
 };
