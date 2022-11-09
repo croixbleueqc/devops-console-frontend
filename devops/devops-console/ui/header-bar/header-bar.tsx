@@ -7,12 +7,12 @@ import Menu from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 
 export type HeaderBarProps = {
-    userIsConnected: boolean;
+    userIsConnected?: boolean;
     appName?: string;
     children?: ReactNode;
 };
 
-export function HeaderBar({ appName, children, userIsConnected }: HeaderBarProps) {
+export function HeaderBar({ appName, children, userIsConnected = false }: HeaderBarProps) {
     return (
         <AppBar position="static">
             <Toolbar>

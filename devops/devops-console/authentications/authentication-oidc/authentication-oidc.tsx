@@ -1,8 +1,6 @@
+import { AuthenticationStateContext } from '@croixbleue/devops.devops-console.authentications.authentication-state';
 import React, { ReactNode } from 'react';
-import {
-    AuthenticationProvider,
-    AuthenticationProviderProps,
-} from '@croixbleue/devops.devops-console.authentications.authentication';
+import { useContext } from 'react';
 
 export type AuthenticationOidcProps = {
     /**
@@ -12,12 +10,18 @@ export type AuthenticationOidcProps = {
 };
 
 export function AuthenticationOidc({ children }: AuthenticationOidcProps) {
-    const defaultState: AuthenticationProviderProps['defaultState'] = {
-        isConnected: false,
-    };
-    return (
-        <AuthenticationProvider defaultState={defaultState}>
-            <div>{children}</div>
-        </AuthenticationProvider>
+    const [state, dispatch] = useContext(AuthenticationStateContext);
+
+    return state.displayAuth ? (
+        <button
+            onClick={() => {
+                dispatch({ type: state.isConnected ? 'markAsUnconnected' : 'markAsConnected' });
+                dispatch({ type: 'hideAuth' });
+            }}
+        >
+            Switch auth status
+        </button>
+    ) : (
+        <div>{children}</div>
     );
 }

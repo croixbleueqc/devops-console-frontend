@@ -21,11 +21,11 @@
             }
         }
     },
-    "devops-console/authentications/authentication": {
+    "devops-console/authentications/authentication-state": {
         "scope": "",
         "version": "",
         "mainFile": "index.ts",
-        "rootDir": "devops/devops-console/authentications/authentication",
+        "rootDir": "devops/devops-console/authentications/authentication-state",
         "config": {
             "teambit.react/react": {},
             "teambit.envs/envs": {
@@ -38,6 +38,18 @@
         "version": "",
         "mainFile": "index.ts",
         "rootDir": "devops/devops-console/authentications/authentication-oidc",
+        "config": {
+            "teambit.react/react": {},
+            "teambit.envs/envs": {
+                "env": "teambit.react/react"
+            }
+        }
+    },
+    "devops-console/global-state": {
+        "scope": "",
+        "version": "",
+        "mainFile": "index.ts",
+        "rootDir": "devops/devops-console/global-state",
         "config": {
             "teambit.react/react": {},
             "teambit.envs/envs": {
