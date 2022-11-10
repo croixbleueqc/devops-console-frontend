@@ -12,7 +12,7 @@ const netlifyConfig: NetlifyOptions = {
     /* Your Netlify site name. The site name below will have the following url:
      * https://devops-console-demo.netlify.app/
      */
-    siteName: 'devops-console-demo',
+    productionSiteName: 'devops-console-demo',
     /* Do not set the index page as the fallback for missing pages? */
     doNotCatchAllToIndex: false,
 };
