@@ -42,9 +42,9 @@ jobs:
       - name: Hard-tag pending components and app
         if: "github.event_name == 'push'"
         run: bit tag --persist
-      - name: Tag bit app netlify/react-app (in case of no soft tag)
+      - name: Tag bit app demo-app/devops-console-demo (in case of no soft tag)
         if: "github.event_name == 'push'"
-        run: bit tag netlify/react-app
+        run: bit tag demo-app/devops-console-demo
       - name: Export components and app
         if: "github.event_name == 'push'"
         run: bit export

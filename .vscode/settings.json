@@ -2,6 +2,7 @@
     "editor.formatOnSave": true,
     "files.eol": "\n",
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.detectIndentation": false,
-    "files.insertFinalNewline": true
+    "editor.detectIndentation": true,
+    "files.insertFinalNewline": true,
+    "mdx-preview.preview.useVscodeMarkdownStyles": false
 }

@@ -13,6 +13,7 @@ const netlifyConfig: NetlifyOptions = {
    * https://devops-console-demo.netlify.app/
    */
   productionSiteName: 'devops-console-demo',
+  stagingSiteName: 'devops-console-demo-staging',
   /* Do not set the index page as the fallback for missing pages? */
   doNotCatchAllToIndex: false,
 };

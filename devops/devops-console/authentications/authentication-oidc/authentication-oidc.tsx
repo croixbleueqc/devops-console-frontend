@@ -3,20 +3,27 @@ import React, { PropsWithChildren, useContext } from 'react';
 
 export type AuthenticationOidcProps = PropsWithChildren<{}>;
 
-export function AuthenticationOidc({ children }: AuthenticationOidcProps) {
+export function AuthenticationOidc() {
   const [state, dispatch] = useContext(AuthenticationStateContext);
 
-  return state.displayAuth ? (
-    <button
-      type="button"
-      onClick={() => {
-        dispatch({ type: state.isConnected ? 'markAsUnconnected' : 'markAsConnected' });
-        // dispatch({ type: 'hideAuth' });
-      }}
-    >
-      Switch auth status
-    </button>
-  ) : (
-    <div>{children}</div>
-  );
+  if (state.displayAuth) {
+    return state.isConnected ? (
+      <span>
+        Unconnected user from header bar top right button{' '}
+        <span role="img" aria-label="tumb eomji">
+          👍
+        </span>
+      </span>
+    ) : (
+      <button
+        type="button"
+        onClick={() => {
+          dispatch({ type: state.isConnected ? 'markAsUnconnected' : 'markAsConnected' });
+        }}
+      >
+        Mark user as connected
+      </button>
+    );
+  }
+  return null;
 }

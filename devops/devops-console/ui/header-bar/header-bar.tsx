@@ -4,15 +4,13 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/icons-material/Menu';
-import AccountCircle from '@mui/icons-material/AccountCircle';
 
 export type HeaderBarProps = {
-  userIsConnected?: boolean;
   appName?: string;
   children?: ReactNode;
 };
 
-export function HeaderBar({ appName, children, userIsConnected = false }: HeaderBarProps) {
+export function HeaderBar({ appName, children }: HeaderBarProps) {
   return (
     <AppBar position="static">
       <Toolbar>
@@ -25,15 +23,6 @@ export function HeaderBar({ appName, children, userIsConnected = false }: Header
           </Typography>
         ) : null}
         {children}
-        {userIsConnected ? 'Connected' : 'Disconnected'}
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="menu-headerbar"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
       </Toolbar>
     </AppBar>
   );
