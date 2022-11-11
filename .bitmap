@@ -11,13 +11,25 @@
         "scope": "",
         "version": "",
         "mainFile": "index.ts",
-        "rootDir": "devops/demo-app/devops-console-demo"
+        "rootDir": "devops/demo-app/devops-console-demo",
+        "nextVersion": {
+            "version": "patch",
+            "message": "First version of new deployed react-app on Netlify, that run a demonstration of 'devops-console/apps/devops-console-app'",
+            "username": "Guillaume ANTECH",
+            "email": "guillaume.antech@qc.croixbleue.ca"
+        }
     },
     "devops-console/apps/devops-console-app": {
         "scope": "",
         "version": "",
         "mainFile": "index.ts",
         "rootDir": "devops/devops-console/apps/devops-console-app",
+        "nextVersion": {
+            "version": "patch",
+            "message": "First version of component for demonstrate component interaction through react context state",
+            "username": "Guillaume ANTECH",
+            "email": "guillaume.antech@qc.croixbleue.ca"
+        },
         "config": {
             "teambit.react/react": {},
             "teambit.envs/envs": {
@@ -30,6 +42,12 @@
         "version": "",
         "mainFile": "index.ts",
         "rootDir": "devops/devops-console/authentications/authentication-oidc",
+        "nextVersion": {
+            "version": "patch",
+            "message": "First version of component for demonstrate component interaction through react context state",
+            "username": "Guillaume ANTECH",
+            "email": "guillaume.antech@qc.croixbleue.ca"
+        },
         "config": {
             "teambit.react/react": {},
             "teambit.envs/envs": {
@@ -42,6 +60,12 @@
         "version": "",
         "mainFile": "index.ts",
         "rootDir": "devops/devops-console/authentications/authentication-state",
+        "nextVersion": {
+            "version": "patch",
+            "message": "First version of component for demonstrate component interaction through react context state",
+            "username": "Guillaume ANTECH",
+            "email": "guillaume.antech@qc.croixbleue.ca"
+        },
         "config": {
             "teambit.react/react": {},
             "teambit.envs/envs": {
@@ -54,6 +78,12 @@
         "version": "",
         "mainFile": "index.ts",
         "rootDir": "devops/devops-console/global-state",
+        "nextVersion": {
+            "version": "patch",
+            "message": "First version of component for demonstrate component interaction through react context state",
+            "username": "Guillaume ANTECH",
+            "email": "guillaume.antech@qc.croixbleue.ca"
+        },
         "config": {
             "teambit.react/react": {},
             "teambit.envs/envs": {
@@ -66,6 +96,12 @@
         "version": "",
         "mainFile": "index.ts",
         "rootDir": "devops/devops-console/repositories/repository-bitbucket",
+        "nextVersion": {
+            "version": "patch",
+            "message": "First version of component for demonstrate component interaction through react context state",
+            "username": "Guillaume ANTECH",
+            "email": "guillaume.antech@qc.croixbleue.ca"
+        },
         "config": {
             "teambit.react/react": {},
             "teambit.envs/envs": {
@@ -78,6 +114,12 @@
         "version": "",
         "mainFile": "index.ts",
         "rootDir": "devops/devops-console/ui/header-bar",
+        "nextVersion": {
+            "version": "patch",
+            "message": "Rename component according new project structure and update component to use children components instead of example components",
+            "username": "Guillaume ANTECH",
+            "email": "guillaume.antech@qc.croixbleue.ca"
+        },
         "config": {
             "teambit.envs/envs": {
                 "env": "teambit.react/react"
