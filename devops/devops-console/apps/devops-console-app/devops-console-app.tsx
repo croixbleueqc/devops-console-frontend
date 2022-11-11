@@ -10,13 +10,12 @@ export type DevopsConsoleAppProps = {
 };
 
 export function DevopsConsoleAppExample({ children }: DevopsConsoleAppProps) {
-    const [stateAuth, dispatchAuth] = useContext(AuthenticationStateContext);
+    const [stateAuth] = useContext(AuthenticationStateContext);
 
     return (
         <div>
             {children}
             <HeaderBar appName={'DevOps Console'} userIsConnected={stateAuth.isConnected}>
-                <button onClick={() => dispatchAuth({ type: 'showAuth' })}>Switch auth status</button>
                 <AuthenticationOidc />
             </HeaderBar>
         </div>
@@ -26,8 +25,7 @@ export function DevopsConsoleAppExample({ children }: DevopsConsoleAppProps) {
 export function DevopsConsoleApp({ children }: DevopsConsoleAppProps) {
     return (
         <GlobalStateProvider>
-            {children}
-            <DevopsConsoleAppExample />
+            <DevopsConsoleAppExample>{children}</DevopsConsoleAppExample>
         </GlobalStateProvider>
     );
 }

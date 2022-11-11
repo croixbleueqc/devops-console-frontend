@@ -25,6 +25,7 @@ export function HeaderBar({ appName, children, userIsConnected = false }: Header
                     </Typography>
                 ) : null}
                 {children}
+                {userIsConnected ? 'Connected' : 'Disconnected'}
                 <IconButton
                     size="large"
                     aria-label="account of current user"
@@ -33,7 +34,6 @@ export function HeaderBar({ appName, children, userIsConnected = false }: Header
                 >
                     <AccountCircle />
                 </IconButton>
-                {userIsConnected ? 'Connected' : 'Disconnected'}
             </Toolbar>
         </AppBar>
     );

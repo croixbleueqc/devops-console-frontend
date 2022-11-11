@@ -16,7 +16,7 @@ export function AuthenticationOidc({ children }: AuthenticationOidcProps) {
         <button
             onClick={() => {
                 dispatch({ type: state.isConnected ? 'markAsUnconnected' : 'markAsConnected' });
-                dispatch({ type: 'hideAuth' });
+                // dispatch({ type: 'hideAuth' });
             }}
         >
             Switch auth status

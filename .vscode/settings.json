@@ -2,5 +2,6 @@
     "editor.formatOnSave": true,
     "files.eol": "\n",
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "prettier.endOfLine": "lf",
+    "editor.detectIndentation": false,
+    "files.insertFinalNewline": true
 }
