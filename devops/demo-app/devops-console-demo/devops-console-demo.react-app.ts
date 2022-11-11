@@ -2,8 +2,8 @@ import { ReactAppOptions } from "@teambit/react";
 import { netlify } from "./netlify";
 
 export const ReactAppApp: ReactAppOptions = {
-  name: "react-app",
-  entry: [require.resolve("./react-app.app-root")],
+  name: "devops-console-demo",
+  entry: [require.resolve("./devops-console-demo.app-root")],
   prerender: {
     routes: ["/"],
   },

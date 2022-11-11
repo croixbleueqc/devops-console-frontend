@@ -5,7 +5,7 @@ import { AuthenticationStateContext } from './authentication-state-context';
 export function MockComponent() {
     const authState = useContext(AuthenticationStateContext);
 
-    return <div>User is connected: {authState.isConnected ? 'yes' : 'no'}</div>;
+    return <div>User is connected: {authState[0].isConnected ? 'yes' : 'no'}</div>;
 }
 
 export const BasicAuthState = () => {
