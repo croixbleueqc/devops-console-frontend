@@ -8,10 +8,8 @@ export function MockComponent() {
   return <div style={{ color: theme.color }}>this should be {theme.color}</div>;
 }
 
-export const BasicThemeUsage = () => {
-  return (
-    <GlobalStateProvider color="blue">
-      <MockComponent />
-    </GlobalStateProvider>
-  );
-};
+export const BasicThemeUsage = () => (
+  <GlobalStateProvider color="blue">
+    <MockComponent />
+  </GlobalStateProvider>
+);

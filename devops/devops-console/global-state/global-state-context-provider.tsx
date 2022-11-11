@@ -5,21 +5,21 @@ import { AuthenticationStateProvider } from '@croixbleue/devops.devops-console.a
 import { GlobalStateContext } from './global-state-context';
 
 export type GlobalStateProviderProps = {
-    /**
-     * primary color of theme.
-     */
-    color?: string;
+  /**
+   * primary color of theme.
+   */
+  color?: string;
 
-    /**
-     * children to be rendered within this theme.
-     */
-    children: ReactNode;
+  /**
+   * children to be rendered within this theme.
+   */
+  children: ReactNode;
 };
 
 export function GlobalStateProvider({ color, children }: GlobalStateProviderProps) {
-    return (
-        <GlobalStateContext.Provider value={{ color }}>
-            <AuthenticationStateProvider>{children}</AuthenticationStateProvider>
-        </GlobalStateContext.Provider>
-    );
+  return (
+    <GlobalStateContext.Provider value={{ color }}>
+      <AuthenticationStateProvider>{children}</AuthenticationStateProvider>
+    </GlobalStateContext.Provider>
+  );
 }

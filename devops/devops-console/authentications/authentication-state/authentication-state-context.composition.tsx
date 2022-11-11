@@ -1,17 +1,16 @@
 import React, { useContext } from 'react';
-import { AuthenticationStateProvider, AuthenticationStateProviderProps } from './authentication-state-context-provider';
+import { AuthenticationStateProvider } from './authentication-state-context-provider';
 import { AuthenticationStateContext } from './authentication-state-context';
 
 export function MockComponent() {
-    const authState = useContext(AuthenticationStateContext);
+  const authState = useContext(AuthenticationStateContext);
 
-    return <div>User is connected: {authState[0].isConnected ? 'yes' : 'no'}</div>;
+  const isConnected = authState[0].isConnected ? 'yes' : 'no';
+  return <div>User is connected: {isConnected}</div>;
 }
 
-export const BasicAuthState = () => {
-    return (
-        <AuthenticationStateProvider>
-            <MockComponent />
-        </AuthenticationStateProvider>
-    );
-};
+export const BasicAuthState = () => (
+  <AuthenticationStateProvider>
+    <MockComponent />
+  </AuthenticationStateProvider>
+);

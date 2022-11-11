@@ -8,5 +8,5 @@ export type GlobalStateContextType = {
 };
 
 export const GlobalStateContext = createContext<GlobalStateContextType>({
-  color: 'aqua'
+  color: 'aqua',
 });

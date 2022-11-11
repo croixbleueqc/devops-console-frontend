@@ -6,26 +6,26 @@ import { AuthenticationStateContext } from '@croixbleue/devops.devops-console.au
 import { AuthenticationOidc } from '@croixbleue/devops.devops-console.authentications.authentication-oidc';
 
 export type DevopsConsoleAppProps = {
-    children?: ReactNode;
+  children?: ReactNode;
 };
 
 export function DevopsConsoleAppExample({ children }: DevopsConsoleAppProps) {
-    const [stateAuth] = useContext(AuthenticationStateContext);
+  const [stateAuth] = useContext(AuthenticationStateContext);
 
-    return (
-        <div>
-            {children}
-            <HeaderBar appName={'DevOps Console'} userIsConnected={stateAuth.isConnected}>
-                <AuthenticationOidc />
-            </HeaderBar>
-        </div>
-    );
+  return (
+    <div>
+      {children}
+      <HeaderBar appName="DevOps Console" userIsConnected={stateAuth.isConnected}>
+        <AuthenticationOidc />
+      </HeaderBar>
+    </div>
+  );
 }
 
 export function DevopsConsoleApp({ children }: DevopsConsoleAppProps) {
-    return (
-        <GlobalStateProvider>
-            <DevopsConsoleAppExample>{children}</DevopsConsoleAppExample>
-        </GlobalStateProvider>
-    );
+  return (
+    <GlobalStateProvider>
+      <DevopsConsoleAppExample>{children}</DevopsConsoleAppExample>
+    </GlobalStateProvider>
+  );
 }

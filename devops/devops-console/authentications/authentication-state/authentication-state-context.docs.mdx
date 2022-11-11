@@ -4,7 +4,10 @@ labels: ['context']
 ---
 
 import { AuthenticationStateContext } from './authentication-state-context';
-import { AuthenticationStateProvider, AuthenticationStateProviderProps } from './authentication-state-context-provider';
+import {
+  AuthenticationStateProvider,
+  AuthenticationStateProviderProps,
+} from './authentication-state-context-provider';
 import { MockComponent } from './authentication-state-context.composition';
 
 ## React Theme Context
@@ -15,16 +18,19 @@ Use this context component to manager authentication state of application.
 
 ```tsx
 import React, { useContext } from 'react';
-import { AuthenticationStateProvider, AuthenticationStateProviderProps } from './theme-context-provider';
+import {
+  AuthenticationStateProvider,
+  AuthenticationStateProviderProps,
+} from './theme-context-provider';
 import { MockComponent } from './authentication-state-context.composition';
 
 const defaultState: AuthenticationStateProviderProps['defaultState'] = {
-    isConnected: false,
+  isConnected: false,
 };
 
 <AuthenticationStateProvider isConnected={defaultState}>
-    // User is not connected!
-    <MockComponent />
+  // User is not connected!
+  <MockComponent />
 </AuthenticationStateProvider>;
 ```
 
@@ -34,14 +40,14 @@ Get connected user:
 
 ```tsx live
 () => {
-    return (
-        <AuthenticationStateProvider
-            defaultState={{
-                isConnected: true,
-            }}
-        >
-            <MockComponent />
-        </AuthenticationStateProvider>
-    );
+  return (
+    <AuthenticationStateProvider
+      defaultState={{
+        isConnected: true,
+      }}
+    >
+      <MockComponent />
+    </AuthenticationStateProvider>
+  );
 };
 ```

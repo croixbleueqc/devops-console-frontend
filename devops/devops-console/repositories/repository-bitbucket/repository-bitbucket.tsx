@@ -8,9 +8,5 @@ export type RepositoryBitbucketProps = {
 };
 
 export function RepositoryBitbucket({ children }: RepositoryBitbucketProps) {
-  return (
-    <div>
-      {children}
-    </div>
-  );
+  return <div>{children}</div>;
 }

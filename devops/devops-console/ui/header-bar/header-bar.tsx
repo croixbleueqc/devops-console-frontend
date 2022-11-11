@@ -7,34 +7,34 @@ import Menu from '@mui/icons-material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 
 export type HeaderBarProps = {
-    userIsConnected?: boolean;
-    appName?: string;
-    children?: ReactNode;
+  userIsConnected?: boolean;
+  appName?: string;
+  children?: ReactNode;
 };
 
 export function HeaderBar({ appName, children, userIsConnected = false }: HeaderBarProps) {
-    return (
-        <AppBar position="static">
-            <Toolbar>
-                <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
-                    <Menu />
-                </IconButton>
-                {appName ? (
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        {appName}
-                    </Typography>
-                ) : null}
-                {children}
-                {userIsConnected ? 'Connected' : 'Disconnected'}
-                <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="menu-headerbar"
-                    color="inherit"
-                >
-                    <AccountCircle />
-                </IconButton>
-            </Toolbar>
-        </AppBar>
-    );
+  return (
+    <AppBar position="static">
+      <Toolbar>
+        <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
+          <Menu />
+        </IconButton>
+        {appName ? (
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            {appName}
+          </Typography>
+        ) : null}
+        {children}
+        {userIsConnected ? 'Connected' : 'Disconnected'}
+        <IconButton
+          size="large"
+          aria-label="account of current user"
+          aria-controls="menu-headerbar"
+          color="inherit"
+        >
+          <AccountCircle />
+        </IconButton>
+      </Toolbar>
+    </AppBar>
+  );
 }
