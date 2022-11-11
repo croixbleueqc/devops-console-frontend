@@ -5,6 +5,9 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
   },
+  "include": [
+    "devops" // Avoid VSCode eslint error: `Parsing error: "parserOptions.project" has been set for @typescript-eslint/parser.`
+  ],
   "exclude": [
     "dist"
   ]

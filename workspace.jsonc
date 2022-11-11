@@ -66,6 +66,7 @@
         "@mui/icons-material": "5.10.9",
         "@mui/material": "5.10.13",
         "@testing-library/react": "13.4.0",
+        "eslint": "8.27.0", // Need by VSCode to arse file and display eslint error
         "react": "18.2.0",
         "react-dom": "18.2.0"
       }
