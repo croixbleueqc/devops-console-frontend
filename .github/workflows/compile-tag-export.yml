@@ -36,7 +36,10 @@ jobs:
         run: bit install
       - name: Compile bit app and components
         run: bit compile
+      - name: Display components status
+        run: bit status --strict
       - name: Build app and components
+        if: "github.event_name == 'pull_request'"
         run: bit build
       - name: Hard-tag pending components and app
         if: "github.event_name == 'push'"
@@ -47,6 +50,9 @@ jobs:
       - name: Export components and app
         if: "github.event_name == 'push'"
         run: bit export --log trace
+      - name: Display components status
+        if: "github.event_name == 'push'"
+        run: bit status --strict
       - name: check for changes
         if: "github.event_name == 'push'"
         run: |
