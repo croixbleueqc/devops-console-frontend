@@ -1,0 +1,53 @@
+---
+description: AuthenticationState context.
+labels: ['context']
+---
+
+import { AuthenticationStateContext } from './authentication-state-context';
+import {
+  AuthenticationStateProvider,
+  AuthenticationStateProviderProps,
+} from './authentication-state-context-provider';
+import { MockComponent } from './authentication-state-context.composition';
+
+## React Theme Context
+
+Use this context component to manager authentication state of application.
+
+### Component usage
+
+```tsx
+import React, { useContext } from 'react';
+import {
+  AuthenticationStateProvider,
+  AuthenticationStateProviderProps,
+} from './theme-context-provider';
+import { MockComponent } from './authentication-state-context.composition';
+
+const defaultState: AuthenticationStateProviderProps['defaultState'] = {
+  isConnected: false,
+};
+
+<AuthenticationStateProvider isConnected={defaultState}>
+  // User is not connected!
+  <MockComponent />
+</AuthenticationStateProvider>;
+```
+
+### Using props to customize authentication status
+
+Get connected user:
+
+```tsx live
+() => {
+  return (
+    <AuthenticationStateProvider
+      defaultState={{
+        isConnected: true,
+      }}
+    >
+      <MockComponent />
+    </AuthenticationStateProvider>
+  );
+};
+```

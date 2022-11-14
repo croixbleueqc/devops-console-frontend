@@ -7,6 +7,7 @@ DevOps Console Frontend is the source of components used to build the UI of DevO
 
 # Requirements
 
+ - (Optional but strongly recommaned) use WSL or Unix system.
  - Node.js
  - Bit (https://bit.dev/docs/getting-started/installing-bit/installing-bit)
 
@@ -102,7 +103,7 @@ The exact command can be found directly on component page, on https://bit.cloud/
 
 Example:
 ```bash
-npm i @croixbleue/devops.devops-console.app-bar
+npm i @croixbleue/devops.devops-console.header-bar
 ```
 
 
