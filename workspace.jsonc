@@ -32,7 +32,7 @@
   /**
    * Devops Console Frontend demo React-App deployed on Netlify
    **/
-  "croixbleue.devops/netlify/react-app": {},
+  "croixbleue.devops/demo-app/devops-console-demo": {},
   /**
    * main configuration for component dependency resolution.
    **/
@@ -45,17 +45,17 @@
       "dependencies": {
         "@babel/runtime": "7.20.1",
         "@teambit/cloud-providers.deployers.netlify": "0.0.10",
-        "@teambit/react.eslint-config-bit-react": "~0.0.672",
-        "@types/jest": "29.2.2",
+        "@teambit/react.eslint-config-bit-react": "~0.0.673",
+        "@types/jest": "29.2.3",
         "@types/node": "18.11.9",
         "@types/react": "18.0.25",
-        "@types/react-dom": "18.0.8",
+        "@types/react-dom": "18.0.9",
         "@types/testing-library__jest-dom": "5.14.5",
-        "@typescript-eslint/eslint-plugin": "5.42.1",
-        "core-js": "^3.26.0",
+        "@typescript-eslint/eslint-plugin": "5.43.0",
+        "core-js": "^3.26.1",
         "eslint-import-resolver-node": "0.3.6",
         "eslint-plugin-import": "2.26.0",
-        "eslint-plugin-jest": "27.1.4",
+        "eslint-plugin-jest": "27.1.5",
         "eslint-plugin-jsx-a11y": "6.6.1",
         "eslint-plugin-mdx": "2.0.5",
         "eslint-plugin-react": "7.31.10"
@@ -66,7 +66,7 @@
         "@mui/icons-material": "5.10.9",
         "@mui/material": "5.10.13",
         "@testing-library/react": "13.4.0",
-        "eslint": "8.27.0", // Need by VSCode to arse file and display eslint error
+        "eslint": "8.27.0",
         "react": "18.2.0",
         "react-dom": "18.2.0"
       }
