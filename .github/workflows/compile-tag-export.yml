@@ -50,9 +50,9 @@ jobs:
       - name: Export components and app
         if: "github.event_name == 'push'"
         run: bit export
-      - name: Display components status
+      - name: Display components list
         if: "github.event_name == 'push'"
-        run: bit status --strict
+        run: bit list
       - name: check for changes
         if: "github.event_name == 'push'"
         run: |
