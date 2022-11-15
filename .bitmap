@@ -110,35 +110,10 @@
         }
     },
     "devops-console/ui/header-bar": {
-        "scope": "",
-        "version": "",
+        "scope": "croixbleue.devops",
+        "version": "0.0.1",
         "mainFile": "index.ts",
-        "rootDir": "devops/devops-console/ui/header-bar",
-        "nextVersion": {
-            "version": "patch",
-            "message": "Rename component according new project structure and update component to use children components instead of example components",
-            "username": "Guillaume ANTECH",
-            "email": "guillaume.antech@qc.croixbleue.ca"
-        },
-        "config": {
-            "teambit.envs/envs": {
-                "env": "teambit.react/react"
-            },
-            "teambit.react/react": {},
-            "teambit.compilation/compiler": {},
-            "teambit.component/dev-files": {},
-            "teambit.compositions/compositions": {},
-            "teambit.docs/docs": {},
-            "teambit.dependencies/dependency-resolver": {},
-            "teambit.pipelines/builder": {},
-            "teambit.component/renaming": {
-                "renamedFrom": {
-                    "scope": "croixbleue.devops",
-                    "name": "devops-console/app-bar",
-                    "version": "0.0.1"
-                }
-            }
-        }
+        "rootDir": "devops/devops-console/ui/header-bar"
     },
     "$schema-version": "15.0.0"
 }
