@@ -46,10 +46,10 @@ jobs:
         run: bit tag --persist
       - name: Tag bit app demo-app/devops-console-demo (in case of no soft tag)
         if: "github.event_name == 'push'"
-        run: bit tag demo-app/devops-console-demo
+        run: bit tag demo-app/devops-console-demo -m "devops-console-demo CI auto tag"
       - name: Export components and app
         if: "github.event_name == 'push'"
-        run: bit export --log trace
+        run: bit export
       - name: Display components status
         if: "github.event_name == 'push'"
         run: bit status --strict
