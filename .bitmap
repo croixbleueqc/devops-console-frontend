@@ -8,104 +8,68 @@
  */
 {
     "demo-app/devops-console-demo": {
-        "scope": "",
-        "version": "",
+        "scope": "croixbleue.devops",
+        "version": "0.0.1",
         "mainFile": "index.ts",
-        "rootDir": "devops/demo-app/devops-console-demo",
-        "nextVersion": {
-            "version": "patch",
-            "message": "First version of new deployed react-app on Netlify, that run a demonstration of 'devops-console/apps/devops-console-app'",
-            "username": "Guillaume ANTECH",
-            "email": "guillaume.antech@qc.croixbleue.ca"
-        }
+        "rootDir": "devops/demo-app/devops-console-demo"
     },
     "devops-console/apps/devops-console-app": {
-        "scope": "",
-        "version": "",
+        "scope": "croixbleue.devops",
+        "version": "0.0.1",
         "mainFile": "index.ts",
         "rootDir": "devops/devops-console/apps/devops-console-app",
-        "nextVersion": {
-            "version": "patch",
-            "message": "First version of component for demonstrate component interaction through react context state",
-            "username": "Guillaume ANTECH",
-            "email": "guillaume.antech@qc.croixbleue.ca"
-        },
         "config": {
-            "teambit.react/react": {},
+            "bit-foundations.react/react-version-envs/react-18-env@1.0.0": {},
             "teambit.envs/envs": {
-                "env": "teambit.react/react"
+                "env": "bit-foundations.react/react-version-envs/react-18-env"
             }
         }
     },
     "devops-console/authentications/authentication-oidc": {
-        "scope": "",
-        "version": "",
+        "scope": "croixbleue.devops",
+        "version": "0.0.1",
         "mainFile": "index.ts",
         "rootDir": "devops/devops-console/authentications/authentication-oidc",
-        "nextVersion": {
-            "version": "patch",
-            "message": "First version of component for demonstrate component interaction through react context state",
-            "username": "Guillaume ANTECH",
-            "email": "guillaume.antech@qc.croixbleue.ca"
-        },
         "config": {
-            "teambit.react/react": {},
+            "bit-foundations.react/react-version-envs/react-18-env@1.0.0": {},
             "teambit.envs/envs": {
-                "env": "teambit.react/react"
+                "env": "bit-foundations.react/react-version-envs/react-18-env"
             }
         }
     },
     "devops-console/authentications/authentication-state": {
-        "scope": "",
-        "version": "",
+        "scope": "croixbleue.devops",
+        "version": "0.0.1",
         "mainFile": "index.ts",
         "rootDir": "devops/devops-console/authentications/authentication-state",
-        "nextVersion": {
-            "version": "patch",
-            "message": "First version of component for demonstrate component interaction through react context state",
-            "username": "Guillaume ANTECH",
-            "email": "guillaume.antech@qc.croixbleue.ca"
-        },
         "config": {
-            "teambit.react/react": {},
+            "bit-foundations.react/react-version-envs/react-18-env@1.0.0": {},
             "teambit.envs/envs": {
-                "env": "teambit.react/react"
+                "env": "bit-foundations.react/react-version-envs/react-18-env"
             }
         }
     },
     "devops-console/global-state": {
-        "scope": "",
-        "version": "",
+        "scope": "croixbleue.devops",
+        "version": "0.0.1",
         "mainFile": "index.ts",
         "rootDir": "devops/devops-console/global-state",
-        "nextVersion": {
-            "version": "patch",
-            "message": "First version of component for demonstrate component interaction through react context state",
-            "username": "Guillaume ANTECH",
-            "email": "guillaume.antech@qc.croixbleue.ca"
-        },
         "config": {
-            "teambit.react/react": {},
+            "bit-foundations.react/react-version-envs/react-18-env@1.0.0": {},
             "teambit.envs/envs": {
-                "env": "teambit.react/react"
+                "env": "bit-foundations.react/react-version-envs/react-18-env"
             }
         }
     },
     "devops-console/repositories/repository-bitbucket": {
-        "scope": "",
-        "version": "",
+        "scope": "croixbleue.devops",
+        "version": "0.0.1",
         "mainFile": "index.ts",
         "rootDir": "devops/devops-console/repositories/repository-bitbucket",
-        "nextVersion": {
-            "version": "patch",
-            "message": "First version of component for demonstrate component interaction through react context state",
-            "username": "Guillaume ANTECH",
-            "email": "guillaume.antech@qc.croixbleue.ca"
-        },
         "config": {
-            "teambit.react/react": {},
+            "bit-foundations.react/react-version-envs/react-18-env@1.0.0": {},
             "teambit.envs/envs": {
-                "env": "teambit.react/react"
+                "env": "bit-foundations.react/react-version-envs/react-18-env"
             }
         }
     },
@@ -113,7 +77,13 @@
         "scope": "croixbleue.devops",
         "version": "0.0.1",
         "mainFile": "index.ts",
-        "rootDir": "devops/devops-console/ui/header-bar"
+        "rootDir": "devops/devops-console/ui/header-bar",
+        "config": {
+            "bit-foundations.react/react-version-envs/react-18-env@1.0.0": {},
+            "teambit.envs/envs": {
+                "env": "bit-foundations.react/react-version-envs/react-18-env"
+            }
+        }
     },
     "$schema-version": "15.0.0"
 }

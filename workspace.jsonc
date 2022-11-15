@@ -81,7 +81,7 @@
    * see https://bit.dev/docs/workspace/variants for more info.
    **/
   "teambit.workspace/variants": {
-    "{devops-console/ui/**}": {
+    "{devops-console/**}": {
       "bit-foundations.react/react-version-envs/react-18-env": {}
     }
   }
