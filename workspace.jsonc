@@ -43,32 +43,36 @@
     "packageManager": "teambit.dependencies/pnpm",
     "policy": {
       "dependencies": {
-        "@babel/runtime": "7.20.1",
-        "@teambit/cloud-providers.deployers.netlify": "0.0.10",
-        "@teambit/react.eslint-config-bit-react": "~0.0.673",
-        "@types/jest": "29.2.3",
-        "@types/node": "18.11.9",
-        "@types/react": "18.0.25",
-        "@types/react-dom": "18.0.9",
+        "@babel/runtime": "7.20.6",
+        "@teambit/cloud-providers.deployers.netlify": "0.0.13",
+        "@teambit/react.eslint-config-bit-react": "0.0.692",
+        "@types/jest": "29.2.4",
+        "@types/node": "18.11.11",
+        "@types/react": "^17.0.8",
+        "@types/react-dom": "^17.0.5",
         "@types/testing-library__jest-dom": "5.14.5",
-        "@typescript-eslint/eslint-plugin": "5.43.0",
+        "@typescript-eslint/eslint-plugin": "5.45.1",
         "core-js": "^3.26.1",
         "eslint-import-resolver-node": "0.3.6",
         "eslint-plugin-import": "2.26.0",
-        "eslint-plugin-jest": "27.1.5",
+        "eslint-plugin-jest": "27.1.6",
         "eslint-plugin-jsx-a11y": "6.6.1",
         "eslint-plugin-mdx": "2.0.5",
-        "eslint-plugin-react": "7.31.10"
+        "eslint-plugin-react": "7.31.11",
+        "react-router-dom": "6.4.4"
       },
       "peerDependencies": {
+        "@babel/core": ">=7.0.0 <8.0.0",
         "@emotion/react": "11.10.5",
         "@emotion/styled": "11.10.5",
-        "@mui/icons-material": "5.10.9",
-        "@mui/material": "5.10.13",
-        "@testing-library/react": "13.4.0",
-        "eslint": "8.27.0",
-        "react": "18.2.0",
-        "react-dom": "18.2.0"
+        "@mui/icons-material": "5.10.16",
+        "@mui/material": "5.10.17",
+        "@teambit/legacy": "1.0.400",
+        "@testing-library/react": "12.1.5",
+        "@typescript-eslint/parser": ">=5.0.0 <6.0.0",
+        "eslint": "8.29.0",
+        "eslint-plugin-react-hooks": "^4 || ^3 || ^2.3.0 || ^1.7.0",
+        "typescript": ">=2.8.0"
       }
     },
     "linkCoreAspects": true
@@ -80,9 +84,6 @@
    * wrap the rule with curly brackets (e.g. `"{ui/*}": {}`)
    * see https://bit.dev/docs/workspace/variants for more info.
    **/
-  "teambit.workspace/variants": {
-    "{devops-console/**}": {
-      "bit-foundations.react/react-version-envs/react-18-env": {}
-    }
-  }
+  "teambit.workspace/variants": {},
+  "croixbleue.devops/apps/app": {}
 }

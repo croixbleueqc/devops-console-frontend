@@ -1,2 +1,2 @@
 export { RepositoryBitbucket } from './repository-bitbucket';
-export type { RepositoryBitbucketProps } from './repository-bitbucket';
+export type { RepositoryDefinition, RepositoryBitbucketProps } from './repository-bitbucket';

@@ -9,7 +9,13 @@ export const BasicHeaderBar = () => <HeaderBar appName="DevOps Console" />;
 
 export const CustomContentHeaderBar = () => (
   <div style={{ width: '100%' }}>
-    <HeaderBar appName="DevOps Console">
+    <HeaderBar
+      appName="DevOps Console"
+      searchOptions={[
+        { label: 'Repo A', value: 'a' },
+        { label: 'Repo B', value: 'b' },
+      ]}
+    >
       <Badge badgeContent={17} color="error">
         <Notifications />
       </Badge>
