@@ -4,6 +4,6 @@ import { BasicRepositoryBitbucket } from './repository-bitbucket.composition';
 
 it('should render with the correct text', () => {
   const { getByText } = render(<BasicRepositoryBitbucket />);
-  const rendered = getByText('hello world!');
+  const rendered = getByText('Example Repo');
   expect(rendered).toBeTruthy();
 });

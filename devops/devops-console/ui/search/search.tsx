@@ -1,16 +1,18 @@
-import React, { ChangeEventHandler, useEffect } from 'react';
+import React, { ChangeEventHandler, HTMLAttributes, ReactHTML, useEffect } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
-import { Autocomplete, Box, CircularProgress, TextField } from '@mui/material';
+import { Autocomplete, AutocompleteProps, Box, CircularProgress, TextField } from '@mui/material';
+
+export type SearchOption = { label: string; value: string };
 
 export type SearchProps = {
   /**
    * a node to be rendered in the special component.
    */
-  options?: { label: string; value: string }[];
-  handleChange?: (value: string) => void;
+  options: SearchOption[];
+  handleChange: (value: string) => void;
 };
 
-export function Search({ options = [], handleChange = () => {} }: SearchProps) {
+export function Search({ options = [], handleChange, ...props }: SearchProps) {
   let [loading, setLoading] = React.useState(options.length === 0);
 
   useEffect(() => {
@@ -21,10 +23,14 @@ export function Search({ options = [], handleChange = () => {} }: SearchProps) {
 
   return (
     <Autocomplete
+      {...props}
       disablePortal
       options={options}
       sx={{ width: 300 }}
-      onChange={(e, v) => handleChange(v?.value || '')}
+      onChange={(e: React.SyntheticEvent, v: unknown) => {
+        const value: SearchOption | null = v as any as SearchOption;
+        return handleChange(value ? value.value : '');
+      }}
       renderInput={(params) => (
         <Box
           sx={{

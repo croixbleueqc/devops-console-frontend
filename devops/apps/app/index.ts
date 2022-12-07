@@ -1,1 +1,0 @@
-export { AppApp } from './app';

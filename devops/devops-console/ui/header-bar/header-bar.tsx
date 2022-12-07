@@ -10,10 +10,15 @@ export type HeaderBarProps = {
   appName?: string;
   children?: ReactNode;
   searchOptions?: { label: string; value: string }[];
-  searchFn: (value: string) => void;
+  searchFn?: (value: string) => void;
 };
 
-export function HeaderBar({ appName, searchOptions, searchFn, children }: HeaderBarProps) {
+export function HeaderBar({
+  appName,
+  searchOptions,
+  searchFn = () => {},
+  children,
+}: HeaderBarProps) {
   return (
     <AppBar position="static">
       <Toolbar variant="dense">

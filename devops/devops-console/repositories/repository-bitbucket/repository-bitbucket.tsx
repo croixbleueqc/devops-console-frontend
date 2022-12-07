@@ -1,6 +1,8 @@
-import { Box, LinearProgress, Link, Paper, styled, Typography } from '@mui/material';
+import { Box, Link, Paper, styled, Typography } from '@mui/material';
+import InventoryIcon from '@mui/icons-material/Inventory';
 import Grid from '@mui/material/Unstable_Grid2';
-import React, { ReactNode, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useBusyIndicator } from '@croixbleue/devops.devops-console.ui.hooks.use-busy-indicator';
 
 export type RepositoryDefinition = {
   name: string;
@@ -20,48 +22,19 @@ export type RepositoryBitbucketProps = {
    * a node to be rendered in the special component.
    */
   definition: RepositoryDefinition;
+  cd: CD[];
 };
 
-export function RepositoryBitbucket({ definition }: RepositoryBitbucketProps) {
+export function RepositoryBitbucket({ cd, definition }: RepositoryBitbucketProps) {
   const { name, slug, url } = definition;
-  let [loading, setLoading] = React.useState(name === '');
-  let [cd, setCd] = React.useState<CD[]>([]);
-
-  useEffect(() => {
-    if (!name) return;
-    setLoading(true);
-    (async () => {
-      try {
-        let req = new Request(
-          `http://localhost:5000/api/v2/sccs/repositories/${name}/cd?plugin_id=cbq`
-        );
-        let response = await fetch(req);
-        let cd = await response.json();
-        setCd(cd);
-      } catch (e) {
-        console.error(e);
-      }
-    })();
-  }, [name]);
-
-  useEffect(() => {
-    if (cd) {
-      setLoading(false);
-    }
-  }, [cd]);
 
   return (
     <Box sx={{ width: '100%' }}>
-      {loading ? (
-        <LinearProgress />
-      ) : (
-        <>
-          <Typography variant="h4" gutterBottom>
-            {name}
-          </Typography>
-          <CdView cd={cd} />
-        </>
-      )}
+      <Typography variant="h4" gutterBottom>
+        <InventoryIcon />
+        {name}
+      </Typography>
+      <CdView cd={cd} />
     </Box>
   );
 }
@@ -75,7 +48,7 @@ const CdItem = styled(Paper)(({ theme }) => ({
 }));
 
 function CdView({ cd }: { cd: CD[] }) {
-  return (
+  return cd.length > 0 ? (
     <Grid container spacing={2}>
       {cd.map((c, i) => (
         <Grid key={i} xs={Math.floor(12 / cd.length)}>
@@ -97,5 +70,9 @@ function CdView({ cd }: { cd: CD[] }) {
         </Grid>
       ))}
     </Grid>
+  ) : (
+    <Typography variant="h6" gutterBottom>
+      No continuous deployment found for this repository
+    </Typography>
   );
 }

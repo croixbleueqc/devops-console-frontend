@@ -9,56 +9,17 @@
  */
 
 {
-    "apps/app": {
-        "scope": "",
-        "version": "",
-        "mainFile": "index.ts",
-        "rootDir": "devops/apps/app",
-        "config": {
-            "teambit.harmony/aspect": {},
-            "teambit.envs/envs": {
-                "env": "teambit.harmony/aspect"
-            }
-        }
-    },
     "demo-app/devops-console-demo": {
         "scope": "croixbleue.devops",
-        "version": "0.0.2",
+        "version": "0.0.3",
         "mainFile": "index.ts",
-        "rootDir": "devops/demo-app/devops-console-demo",
-        "config": {
-            "teambit.dependencies/dependency-resolver": {
-                "policy": {
-                    "dependencies": {
-                        "react": "^16.8.0 || ^17.0.0",
-                        "react-dom": "^16.8.0 || ^17.0.0"
-                    },
-                    "peerDependencies": {
-                        "react-dom": "-"
-                    }
-                }
-            }
-        }
+        "rootDir": "devops/demo-app/devops-console-demo"
     },
     "devops-console/apps/devops-console-app": {
         "scope": "croixbleue.devops",
-        "version": "0.0.2",
+        "version": "0.0.3",
         "mainFile": "index.ts",
-        "rootDir": "devops/devops-console/apps/devops-console-app",
-        "config": {
-            "teambit.react/react": {},
-            "teambit.envs/envs": {
-                "env": "teambit.react/react"
-            },
-            "teambit.dependencies/dependency-resolver": {
-                "policy": {
-                    "peerDependencies": {
-                        "react": "^16.8.0 || ^17.0.0",
-                        "react-dom": "^16.8.0 || ^17.0.0"
-                    }
-                }
-            }
-        }
+        "rootDir": "devops/devops-console/apps/devops-console-app"
     },
     "devops-console/authentications/authentication-oidc": {
         "scope": "croixbleue.devops",
@@ -96,17 +57,23 @@
             }
         }
     },
-    "devops-console/repositories/repository-bitbucket": {
-        "scope": "croixbleue.devops",
-        "version": "0.0.2",
+    "devops-console/json-editor": {
+        "scope": "",
+        "version": "",
         "mainFile": "index.ts",
-        "rootDir": "devops/devops-console/repositories/repository-bitbucket",
+        "rootDir": "devops/devops-console/json-editor",
         "config": {
             "teambit.react/react": {},
             "teambit.envs/envs": {
                 "env": "teambit.react/react"
             }
         }
+    },
+    "devops-console/repositories/repository-bitbucket": {
+        "scope": "croixbleue.devops",
+        "version": "0.0.3",
+        "mainFile": "index.ts",
+        "rootDir": "devops/devops-console/repositories/repository-bitbucket"
     },
     "devops-console/ui/header-bar": {
         "scope": "croixbleue.devops",
@@ -120,25 +87,17 @@
             }
         }
     },
+    "devops-console/ui/hooks/use-busy-indicator": {
+        "scope": "",
+        "version": "0.0.1",
+        "mainFile": "index.ts",
+        "rootDir": "devops/devops-console/ui/hooks/use-busy-indicator"
+    },
     "devops-console/ui/search": {
         "scope": "",
-        "version": "",
+        "version": "0.0.1",
         "mainFile": "index.ts",
-        "rootDir": "devops/devops-console/ui/search",
-        "config": {
-            "teambit.react/react": {},
-            "teambit.envs/envs": {
-                "env": "teambit.react/react"
-            },
-            "teambit.dependencies/dependency-resolver": {
-                "policy": {
-                    "peerDependencies": {
-                        "react": "^16.8.0 || ^17.0.0",
-                        "react-dom": "^16.8.0 || ^17.0.0"
-                    }
-                }
-            }
-        }
+        "rootDir": "devops/devops-console/ui/search"
     },
     "$schema-version": "15.0.0"
 }

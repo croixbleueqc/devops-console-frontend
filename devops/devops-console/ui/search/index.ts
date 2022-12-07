@@ -1,2 +1,2 @@
 export { Search } from './search';
-export type { SearchProps } from './search';
+export type { SearchOption, SearchProps } from './search';

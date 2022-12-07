@@ -4,6 +4,6 @@ import { BasicDevopsConsoleApp } from './devops-console-app.composition';
 
 it('should render with the correct text', () => {
   const { getByText } = render(<BasicDevopsConsoleApp />);
-  const rendered = getByText('hello world!');
+  const rendered = getByText('DevOps Console');
   expect(rendered).toBeTruthy();
 });

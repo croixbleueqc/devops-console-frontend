@@ -9,56 +9,46 @@ import { GlobalStateProvider } from '@croixbleue/devops.devops-console.global-st
 import { HeaderBar } from '@croixbleue/devops.devops-console.ui.header-bar';
 import { AuthenticationStateContext } from '@croixbleue/devops.devops-console.authentications.authentication-state';
 // import { AuthenticationOidc } from '@croixbleue/devops.devops-console.authentications.authentication-oidc';
-import { Box, Container } from '@mui/material';
+import { Box, Container, LinearProgress } from '@mui/material';
 import {
   RepositoryBitbucket,
   RepositoryDefinition,
 } from '@croixbleue/devops.devops-console.repositories.repository-bitbucket';
+import { useBusyIndicator } from '@croixbleue/devops.devops-console.ui.hooks.use-busy-indicator';
 
-export type DevopsConsoleAppProps = {
-  children?: ReactNode;
-};
+export type DevopsConsoleAppProps = {};
 
-export function DevopsConsoleAppExample({ children }: DevopsConsoleAppProps) {
+const baseUrl = 'http://localhost:5000/api/v2';
+
+export function DevopsConsoleAppExample({}: DevopsConsoleAppProps) {
+  const { imBusy, imNotBusy, busy } = useBusyIndicator();
   const [stateAuth, dispatch] = useContext(AuthenticationStateContext);
-  const [repolist, setRepolist] = React.useState([]);
-  const [selectedRepo, setSelectedRepo] = React.useState<RepositoryDefinition>({
-    name: '',
-    slug: '',
-    url: '',
-  });
+  const [repoList, setRepoList] = React.useState([]);
+  const [selectedRepo, setSelectedRepo] = React.useState<RepositoryDefinition | null>(null);
+  const [cd, setCd] = React.useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/v2/sccs/repositories?plugin_id=cbq')
-      .then((response) => response.json())
-      .then((data) => {
-        const list = data
-          .map((r: { name: string; slug: string }) => ({ label: r.name, value: r.name }))
-          .sort((a: { label: string }, b: { label: string }) => a.label.localeCompare(b.label));
-        setRepolist(list);
-      })
-      .catch((e) => console.error(e));
+    fetchAndSet(`${baseUrl}/sccs/repositories?plugin_id=cbq`, (data) => {
+      const list = data
+        .map((r: { name: string; slug: string }) => ({ label: r.name, value: r.name }))
+        .sort((a: { label: string }, b: { label: string }) => a.label.localeCompare(b.label));
+      setRepoList(list);
+    });
   }, []);
 
   const handleSearch = (repoName: string) => {
-    let req = new Request(
-      `http://localhost:5000/api/v2/sccs/repositories/${repoName}?plugin_id=cbq`
-    );
-    fetch(req)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        console.warn(response);
-      })
-      .then((data) => setSelectedRepo({ name: data.name, slug: data.slug, url: data.url ?? '' }))
-      .catch((e) => console.error(e));
+    Promise.all([
+      fetchAndSet(`${baseUrl}/sccs/repositories/${repoName}?plugin_id=cbq`, (d) =>
+        setSelectedRepo({ name: d.name, slug: d.slug, url: d.url ?? '' })
+      ),
+      fetchAndSet(`${baseUrl}/sccs/repositories/${repoName}/cd?plugin_id=cbq`, setCd),
+    ]);
   };
 
   return (
     <Container maxWidth="xl">
-      <Box sx={{ flexGrow: 1 }}>
-        <HeaderBar appName="DevOps Console" searchOptions={repolist} searchFn={handleSearch}>
+      <Box sx={{ mb: '1em', flexGrow: 1 }}>
+        <HeaderBar appName="DevOps Console" searchOptions={repoList} searchFn={handleSearch}>
           {stateAuth.isConnected ? (
             <>
               <IconButton
@@ -86,8 +76,9 @@ export function DevopsConsoleAppExample({ children }: DevopsConsoleAppProps) {
             <Typography component="span">Guest</Typography>
           )}
         </HeaderBar>
+        {busy && <LinearProgress />}
       </Box>
-      <RepositoryBitbucket definition={selectedRepo} />
+      {!busy && !!selectedRepo && !!cd && <RepositoryBitbucket cd={cd} definition={selectedRepo} />}
       {/*       <div>
         {stateAuth.displayAuth ? (
           <button
@@ -114,12 +105,26 @@ export function DevopsConsoleAppExample({ children }: DevopsConsoleAppProps) {
           </div> */}
     </Container>
   );
+
+  function fetchAndSet(url: string, setFn: (d: any) => void): Promise<void> {
+    imBusy();
+    return fetch(url)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error(`Error ${response.status} ${response.statusText}`);
+      })
+      .then((data) => setFn(data))
+      .catch((e) => console.error(e))
+      .finally(() => imNotBusy());
+  }
 }
 
-export function DevopsConsoleApp({ children }: DevopsConsoleAppProps) {
+export function DevopsConsoleApp({}: DevopsConsoleAppProps) {
   return (
     <GlobalStateProvider>
-      <DevopsConsoleAppExample>{children}</DevopsConsoleAppExample>
+      <DevopsConsoleAppExample />
     </GlobalStateProvider>
   );
 }

@@ -1,0 +1,55 @@
+---
+description: 'A React Hook that keeps a count of running tasks and outputs a boolean to indicate wether or there are running tasks or not. It is the responsibility of the user to call the `imBusy` and `imNotBusy` functions to indicate wether or not a task is running.'
+labels: ['hook', 'progress']
+---
+
+import { useBusyIndicator } from './use-busy-indicator';
+
+## A React Hook to provide true/false status on running tasks.
+
+Call `imBusy` from a consuming function to indicate the start of a task. Call `imNotBusy` to indicate the end of a task. Use the `busy` boolean in a consuming component to show/hide a loading indicator, for example.
+
+### Component usage
+
+In this example clicking either button starts a 5 seconds "task". The busy indicator is shown while the task is running.
+
+```js
+import { CircularProgress } from '@mui/material';
+import React, { useState } from 'react';
+import { useBusyIndicator } from './use-busy-indicator';
+
+export const BasicuseBusyIndicator = () => {
+  const { imBusy, imNotBusy, busy } = useBusyIndicator();
+  const [busy1, setBusy1] = useState(false);
+  const [busy2, setBusy2] = useState(false);
+
+  const startTask = (setter: (b: boolean) => void) => {
+    setter(true);
+    imBusy();
+    setTimeout(() => {
+      setter(false);
+      imNotBusy();
+    }, 5000);
+  };
+
+  return (
+    <>
+      <div style={{ marginBottom: '2em' }}>
+        Busy indicator is{' '}
+        {busy ? (
+          <span style={{ color: 'red' }}>busy</span>
+        ) : (
+          <span style={{ color: 'green' }}>not busy</span>
+        )}
+        .
+      </div>
+      <button type="button" style={{ minWidth: '18ch' }} onClick={() => startTask(setBusy1)}>
+        {busy1 ? <CircularProgress size="1em" /> : 'Start task 1...'}
+      </button>
+      <button type="button" style={{ minWidth: '18ch' }} onClick={() => startTask(setBusy2)}>
+        {busy2 ? <CircularProgress size="1em" /> : 'Start task 2...'}
+      </button>
+    </>
+  );
+};
+```
