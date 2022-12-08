@@ -11,7 +11,7 @@ export const CustomContentHeaderBar = () => (
   <div style={{ width: '100%' }}>
     <HeaderBar
       appName="DevOps Console"
-      searchOptions={[
+      repositories={[
         { label: 'Repo A', value: 'a' },
         { label: 'Repo B', value: 'b' },
       ]}

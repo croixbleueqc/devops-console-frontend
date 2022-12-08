@@ -1,9 +1,9 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { BasicJsonEditor } from './json-editor.composition';
+import { JsonReadOnly } from './json-editor.composition';
 
-it('should render with the correct text', () => {
-  const { getByText } = render(<BasicJsonEditor />);
-  const rendered = getByText('hello world!');
+it('should render', () => {
+  const { getByTestId } = render(<JsonReadOnly />);
+  const rendered = getByTestId('json-editor');
   expect(rendered).toBeTruthy();
 });

@@ -44,6 +44,7 @@
     "policy": {
       "dependencies": {
         "@babel/runtime": "7.20.6",
+        "@monaco-editor/react": "4.4.6",
         "@teambit/cloud-providers.deployers.netlify": "0.0.13",
         "@teambit/react.eslint-config-bit-react": "0.0.692",
         "@types/jest": "29.2.4",
@@ -59,6 +60,7 @@
         "eslint-plugin-jsx-a11y": "6.6.1",
         "eslint-plugin-mdx": "2.0.5",
         "eslint-plugin-react": "7.31.11",
+        "monaco-editor": "0.34.1",
         "react-router-dom": "6.4.4"
       },
       "peerDependencies": {
@@ -74,6 +76,8 @@
         "eslint": "8.29.0",
         "eslint-plugin-react-hooks": "^4 || ^3 || ^2.3.0 || ^1.7.0",
         "graphql": "14.x || 15.x",
+        "react": "^16.8.0 || ^17.0.0",
+        "react-dom": "^16.8.0 || ^17.0.0",
         "typescript": ">=2.8.0"
       }
     },

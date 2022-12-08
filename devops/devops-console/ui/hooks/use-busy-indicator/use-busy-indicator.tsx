@@ -12,6 +12,5 @@ export function useBusyIndicator() {
   useEffect(() => {
     setBusy(tasks > 0);
   }, [tasks]);
-  useEffect(() => console.log('busy', busy), [busy]);
-  return { imBusy, imNotBusy, busy };
+  return { imBusy, imNotBusy, busy, tasks };
 }

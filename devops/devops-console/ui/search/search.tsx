@@ -2,24 +2,20 @@ import React, { ChangeEventHandler, HTMLAttributes, ReactHTML, useEffect } from 
 import SearchIcon from '@mui/icons-material/Search';
 import { Autocomplete, AutocompleteProps, Box, CircularProgress, TextField } from '@mui/material';
 
-export type SearchOption = { label: string; value: string };
+export type SearchOption = { label: string; value: number };
 
 export type SearchProps = {
-  /**
-   * a node to be rendered in the special component.
-   */
-  options: SearchOption[];
-  handleChange: (value: string) => void;
+  options?: SearchOption[];
+  onChange: (value: number | null) => void;
 };
 
-export function Search({ options = [], handleChange, ...props }: SearchProps) {
-  let [loading, setLoading] = React.useState(options.length === 0);
+export function Search({ options = [], onChange, ...props }: SearchProps) {
+  const loading = options.length === 0;
 
-  useEffect(() => {
-    if (options.length > 0) {
-      setLoading(false);
-    }
-  }, [options]);
+  const handleChange = (e: React.SyntheticEvent, v: unknown) => {
+    const value: SearchOption | null = v as any as SearchOption;
+    onChange(value ? value.value : null);
+  };
 
   return (
     <Autocomplete
@@ -27,10 +23,7 @@ export function Search({ options = [], handleChange, ...props }: SearchProps) {
       disablePortal
       options={options}
       sx={{ width: 300 }}
-      onChange={(e: React.SyntheticEvent, v: unknown) => {
-        const value: SearchOption | null = v as any as SearchOption;
-        return handleChange(value ? value.value : '');
-      }}
+      onChange={handleChange}
       renderInput={(params) => (
         <Box
           sx={{
@@ -39,7 +32,6 @@ export function Search({ options = [], handleChange, ...props }: SearchProps) {
             '& .MuiTextField-root': { m: 1, width: '25ch' },
           }}
         >
-          <SearchIcon sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
           <TextField
             {...params}
             disabled={loading}

@@ -9,6 +9,6 @@ export const BasicSearch = () => (
       { label: 'two', value: 'two' },
       { label: 'three', value: 'three' },
     ]}
-    handleChange={(value) => console.log(value)}
+    onChange={(value) => console.log(value)}
   />
 );
