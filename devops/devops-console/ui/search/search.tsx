@@ -1,10 +1,12 @@
 import React, { ChangeEventHandler, HTMLAttributes, ReactHTML, useEffect } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import { Autocomplete, AutocompleteProps, Box, CircularProgress, TextField } from '@mui/material';
+import { Overwrite } from '@croixbleue/devops.devops-console.types';
 
 export type SearchOption = { label: string; value: number };
 
 export type SearchProps = {
+  value: SearchOption | null;
   options?: SearchOption[];
   onChange: (value: number | null) => void;
 };
@@ -22,32 +24,24 @@ export function Search({ options = [], onChange, ...props }: SearchProps) {
       {...props}
       disablePortal
       options={options}
-      sx={{ width: 300 }}
+      sx={{ width: 300, ml: 2, mr: 2 }}
       onChange={handleChange}
       renderInput={(params) => (
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            '& .MuiTextField-root': { m: 1, width: '25ch' },
+        <TextField
+          {...params}
+          disabled={loading}
+          InputProps={{
+            ...params.InputProps,
+            endAdornment: (
+              <>
+                {loading ? <CircularProgress color="inherit" size={20} /> : null}
+                {params.InputProps.endAdornment}
+              </>
+            ),
           }}
-        >
-          <TextField
-            {...params}
-            disabled={loading}
-            InputProps={{
-              ...params.InputProps,
-              endAdornment: (
-                <>
-                  {loading ? <CircularProgress color="inherit" size={20} /> : null}
-                  {params.InputProps.endAdornment}
-                </>
-              ),
-            }}
-            label="Search..."
-            size="small"
-          />
-        </Box>
+          label="Search..."
+          size="small"
+        />
       )}
     />
   );

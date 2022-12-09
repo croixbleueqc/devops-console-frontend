@@ -1,12 +1,11 @@
 import { createContext } from 'react';
 
 export type GlobalStateContextType = {
-  /**
-   * primary color of theme.
-   */
-  color?: string;
+  theme: 'light' | 'dark';
+  backendUrl?: string;
+  openApiUrl?: string;
 };
 
 export const GlobalStateContext = createContext<GlobalStateContextType>({
-  color: 'aqua',
+  theme: 'light',
 });

@@ -1,31 +1,36 @@
 import { K8sStatus, Project, RepoStatus } from '@croixbleue/devops.devops-console.types';
-import { Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import React, { ReactNode } from 'react';
 import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
+import { CdView } from '@croixbleue/devops.devops-console.ui.cd-view';
+import { PageTitle } from '@croixbleue/devops.devops-console.ui.page-title';
+import { Box } from '@mui/material';
 
 export type ProjectViewProps = {
-  cdViews?: ReactNode[];
   k8sViews?: ReactNode;
   projectConfig: Project;
+  repoSelection: RepoStatus[];
 };
 
-export function ProjectView({ projectConfig, cdViews, k8sViews }: ProjectViewProps) {
+export function ProjectView({ projectConfig, repoSelection, k8sViews }: ProjectViewProps) {
   return (
-    <>
-      <Typography variant="h3" gutterBottom>
-        <DashboardOutlinedIcon /> {projectConfig.name}
-      </Typography>
+    <Box sx={{ width: '100%' }}>
+      <PageTitle>
+        <DashboardOutlinedIcon fontSize="inherit" /> Project: {projectConfig.name}
+      </PageTitle>
       <Grid container>
         <Grid xs={12}>
-          <Typography variant="h4" gutterBottom>
-            Deployed versions
-          </Typography>
-          {cdViews?.map((c) => (
-            <Grid xs={12}>{c}</Grid>
+          {repoSelection?.map(({ definition, cdStatus }) => (
+            <Grid xs={12}>
+              <CdView
+                title={definition.name}
+                cdStatus={cdStatus}
+                environments={projectConfig.environments}
+              />
+            </Grid>
           ))}
         </Grid>
       </Grid>
-    </>
+    </Box>
   );
 }

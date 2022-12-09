@@ -61,6 +61,7 @@
         "eslint-plugin-mdx": "2.0.5",
         "eslint-plugin-react": "7.31.11",
         "monaco-editor": "0.34.1",
+        "openapi-typescript-codegen": "0.23.0",
         "react-router-dom": "6.4.4"
       },
       "peerDependencies": {

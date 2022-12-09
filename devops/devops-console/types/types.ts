@@ -1,7 +1,9 @@
+export type ProjectEnvironments = { enabled: boolean; name: string }[];
+
 export type Project = {
   name: string;
   repositories: string[];
-  environments: { enabled: boolean; name: string }[];
+  environments: ProjectEnvironments;
 };
 
 export type ProjectMap = {
@@ -14,12 +16,14 @@ export type RepositoryDefinition = {
   url: string;
 };
 
-export type CdStatus = Array<{
+export type CdEnvironment = {
   environment: string;
   version: string;
   readonly: boolean;
   pullrequest?: string;
-}>;
+};
+
+export type CdStatus = CdEnvironment[];
 
 export type RepoStatus = { definition: RepositoryDefinition; cdStatus: CdStatus };
 

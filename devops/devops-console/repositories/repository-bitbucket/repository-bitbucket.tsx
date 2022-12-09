@@ -2,11 +2,8 @@ import { Box, Typography } from '@mui/material';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import React from 'react';
 import { CdView } from '@croixbleue/devops.devops-console.ui.cd-view';
-import {
-  CdStatus,
-  RepositoryDefinition,
-  RepoStatus,
-} from '@croixbleue/devops.devops-console.types';
+import { RepoStatus } from '@croixbleue/devops.devops-console.types';
+import { PageTitle } from '@croixbleue/devops.devops-console.ui.page-title';
 
 export type RepositoryBitbucketProps = {
   status: RepoStatus;
@@ -14,14 +11,13 @@ export type RepositoryBitbucketProps = {
 
 export function RepositoryBitbucket({ status }: RepositoryBitbucketProps) {
   const { definition, cdStatus } = status;
-  const { name, slug, url } = definition;
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Typography variant="h4" gutterBottom>
-        <InventoryIcon />
-        {name}
-      </Typography>
+      <PageTitle>
+        <InventoryIcon fontSize="inherit" />
+        {definition.name}
+      </PageTitle>
       <CdView cdStatus={cdStatus} />
     </Box>
   );

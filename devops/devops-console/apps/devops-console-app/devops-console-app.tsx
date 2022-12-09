@@ -17,65 +17,88 @@ import {
 } from '@croixbleue/devops.devops-console.types';
 import { HeaderBar } from '@croixbleue/devops.devops-console.ui.header-bar';
 import { useBusyIndicator } from '@croixbleue/devops.devops-console.ui.hooks.use-busy-indicator';
+import { ProjectView } from '@croixbleue/devops.devops-console.ui.project-view';
 // import { AuthenticationOidc } from '@croixbleue/devops.devops-console.authentications.authentication-oidc';
 
-export type DevopsConsoleAppProps = {};
-
+// TODO extract to a configuration module
 const baseUrl = 'http://localhost:5000/api/v2';
-
 const cdStatusUrl = (name: string) => `${baseUrl}/sccs/repositories/${name}/cd?plugin_id=cbq`;
+
+export type DevopsConsoleAppProps = {};
 
 export function DevopsConsoleAppExample({}: DevopsConsoleAppProps) {
   const [stateAuth, dispatch] = useContext(AuthenticationStateContext);
   const { imBusy, imNotBusy, busy } = useBusyIndicator();
 
-  const [repositories, setRepositories] = useState<RepositoryDefinition[]>([]);
-  const [selectedRepo, setSelectedRepo] = useState<RepoStatus | null>(null);
-
+  const [repositoryDefinitions, setRepositoryDefinitions] = useState<RepositoryDefinition[]>([]);
   const [projects, setProjects] = useState<ProjectMap>({});
-  const [selectedProject, setSelectedProject] = useState<string>('');
+
+  const [selectedRepoIdx, setSelectedRepoIdx] = useState<number | null>(null);
+  const [selectedProjectKey, setSelectedProjectKey] = useState<string>('');
+
+  const [repoSelection, setRepoSelection] = useState<RepoStatus[] | null>(null);
 
   // fetch list of repos and projects on mount
   useEffect(() => {
     Promise.all([
-      fetchAndSet(`${baseUrl}/sccs/repositories?plugin_id=cbq`, setRepositories),
+      fetchAndSet(`${baseUrl}/sccs/repositories?plugin_id=cbq`, setRepositoryDefinitions),
       fetchAndSet(`${baseUrl}/sccs/projects`, setProjects),
     ]);
   }, []);
 
   const handleSearch = (repoIdx: number | null) => {
-    if (repoIdx === null) {
-      setSelectedRepo(null);
-      return;
-    }
-    const definition = repositories[repoIdx];
-
-    fetchAndSet<CdStatus>(cdStatusUrl(definition.name)).then((cdStatus) => {
-      setSelectedRepo({ definition, cdStatus });
-    });
+    setSelectedProjectKey('');
+    setSelectedRepoIdx(repoIdx);
   };
 
   const handleProjectChange = (projectKey: string) => {
-    if (projectKey === '') {
-      setSelectedProject('');
+    setSelectedRepoIdx(null);
+    setSelectedProjectKey(projectKey);
+  };
+
+  useEffect(() => {
+    if (selectedRepoIdx == null) {
       return;
     }
+    const definition = repositoryDefinitions[selectedRepoIdx];
+    fetchAndSet<CdStatus>(cdStatusUrl(definition.name)).then((cdStatus) => {
+      setRepoSelection([{ definition, cdStatus }]);
+    });
+  }, [selectedRepoIdx]);
 
-    const project = projects[projectKey];
+  useEffect(() => {
+    if (selectedProjectKey == '') {
+      return;
+    }
+    const project = projects[selectedProjectKey];
 
     Promise.all(project.repositories.map((repo) => fetchAndSet<CdStatus>(cdStatusUrl(repo)))).then(
-      (cdStatuses) => {}
+      (cdStatuses) => {
+        const repoStatuses = cdStatuses.map((cd, idx) => {
+          const definition = repositoryDefinitions.find((r) => r.name == project.repositories[idx]);
+          if (!definition) {
+            throw new Error(`Repository ${project.repositories[idx]} not found`);
+          }
+          return { definition, cdStatus: cd } as RepoStatus;
+        });
+
+        setRepoSelection(repoStatuses);
+      }
     );
-  };
+  }, [selectedProjectKey]);
 
   return (
     <Container maxWidth="xl">
       <Box sx={{ mb: '1em', flexGrow: 1 }}>
         <HeaderBar
-          appName="DevOps Console"
+          appName="🌌 DevOps Console"
           projects={projects}
-          repositories={repositories}
+          repositories={repositoryDefinitions}
+          selectedProjectKey={selectedProjectKey}
+          selectedRepoIdx={selectedRepoIdx}
           onSearch={handleSearch}
+          onProjectChange={handleProjectChange}
+          navigation={/*TODO*/ null}
         >
           {stateAuth.isConnected ? (
             <>
@@ -106,7 +129,13 @@ export function DevopsConsoleAppExample({}: DevopsConsoleAppProps) {
         </HeaderBar>
         {busy && <LinearProgress />}
       </Box>
-      {!busy && !!selectedRepo && <RepositoryBitbucket status={selectedRepo} />}
+      {!busy &&
+        !!repoSelection &&
+        (selectedRepoIdx != null ? (
+          <RepositoryBitbucket status={repoSelection[0]} />
+        ) : selectedProjectKey != '' ? (
+          <ProjectView projectConfig={projects[selectedProjectKey]} repoSelection={repoSelection} />
+        ) : null)}
       {/*       <div>
         {stateAuth.displayAuth ? (
           <button

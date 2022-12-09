@@ -9,32 +9,36 @@ import {
   SelectChangeEvent,
   SelectProps,
 } from '@mui/material';
-import React, { useState } from 'react';
+import React from 'react';
 
 export type ProjectSelectProps = Overwrite<
   SelectProps,
   {
     projects: ProjectMap;
+    selectedProjectKey: string;
     onChange: (projectKey: string) => void;
   }
 >;
 
-export function ProjectSelect({ projects, onChange, ...props }: ProjectSelectProps) {
-  const [project, setProject] = useState('');
+export function ProjectSelect({
+  selectedProjectKey,
+  projects,
+  onChange,
+  ...props
+}: ProjectSelectProps) {
   const handleChange = (event: SelectChangeEvent<unknown>) => {
     const value = event.target.value as string;
     onChange?.(value);
-    setProject(value);
   };
 
   return Object.keys(projects).length > 0 ? (
-    <Box sx={{ width: 150 }}>
+    <Box sx={{ width: 200 }}>
       <FormControl fullWidth size="small">
         <InputLabel>Projects</InputLabel>
         <Select
           {...props}
           id="project-select"
-          value={project}
+          value={selectedProjectKey}
           size="small"
           onChange={handleChange}
           label="Projects"
