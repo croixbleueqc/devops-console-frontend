@@ -44,6 +44,7 @@
     "policy": {
       "dependencies": {
         "@babel/runtime": "7.20.6",
+        "@kubernetes/client-node": "0.17.1",
         "@monaco-editor/react": "4.4.6",
         "@teambit/cloud-providers.deployers.netlify": "0.0.13",
         "@teambit/react.eslint-config-bit-react": "0.0.692",
@@ -62,7 +63,7 @@
         "eslint-plugin-react": "7.31.11",
         "monaco-editor": "0.34.1",
         "openapi-typescript-codegen": "0.23.0",
-        "react-router-dom": "6.4.4"
+        "react-router-dom": "6.4.5"
       },
       "peerDependencies": {
         "@babel/core": ">=7.0.0 <8.0.0",

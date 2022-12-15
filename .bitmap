@@ -93,11 +93,95 @@
             }
         }
     },
+    "devops-console/k8s-deployment-status": {
+        "scope": "",
+        "version": "",
+        "mainFile": "index.ts",
+        "rootDir": "devops/devops-console/k8s-deployment-status",
+        "config": {
+            "teambit.react/react": {},
+            "teambit.envs/envs": {
+                "env": "teambit.react/react"
+            }
+        }
+    },
     "devops-console/repositories/repository-bitbucket": {
         "scope": "croixbleue.devops",
         "version": "0.0.2",
         "mainFile": "index.ts",
         "rootDir": "devops/devops-console/repositories/repository-bitbucket",
+        "config": {
+            "teambit.react/react": {},
+            "teambit.envs/envs": {
+                "env": "teambit.react/react"
+            }
+        }
+    },
+    "devops-console/router": {
+        "scope": "",
+        "version": "",
+        "mainFile": "index.ts",
+        "rootDir": "devops/devops-console/router",
+        "config": {
+            "teambit.react/react": {},
+            "teambit.envs/envs": {
+                "env": "teambit.react/react"
+            }
+        }
+    },
+    "devops-console/routes/home": {
+        "scope": "",
+        "version": "",
+        "mainFile": "index.ts",
+        "rootDir": "devops/devops-console/routes/home",
+        "config": {
+            "teambit.react/react": {},
+            "teambit.envs/envs": {
+                "env": "teambit.react/react"
+            }
+        }
+    },
+    "devops-console/routes/project": {
+        "scope": "",
+        "version": "",
+        "mainFile": "index.ts",
+        "rootDir": "devops/devops-console/routes/project",
+        "config": {
+            "teambit.react/react": {},
+            "teambit.envs/envs": {
+                "env": "teambit.react/react"
+            }
+        }
+    },
+    "devops-console/routes/project-settings": {
+        "scope": "",
+        "version": "",
+        "mainFile": "index.ts",
+        "rootDir": "devops/devops-console/routes/project-settings",
+        "config": {
+            "teambit.react/react": {},
+            "teambit.envs/envs": {
+                "env": "teambit.react/react"
+            }
+        }
+    },
+    "devops-console/routes/repository": {
+        "scope": "",
+        "version": "",
+        "mainFile": "index.ts",
+        "rootDir": "devops/devops-console/routes/repository",
+        "config": {
+            "teambit.react/react": {},
+            "teambit.envs/envs": {
+                "env": "teambit.react/react"
+            }
+        }
+    },
+    "devops-console/routes/user-settings": {
+        "scope": "",
+        "version": "",
+        "mainFile": "index.ts",
+        "rootDir": "devops/devops-console/routes/user-settings",
         "config": {
             "teambit.react/react": {},
             "teambit.envs/envs": {
@@ -165,11 +249,35 @@
             }
         }
     },
+    "devops-console/ui/k8s-deployment-view": {
+        "scope": "",
+        "version": "",
+        "mainFile": "index.ts",
+        "rootDir": "devops/devops-console/ui/k8s-deployment-view",
+        "config": {
+            "teambit.react/react": {},
+            "teambit.envs/envs": {
+                "env": "teambit.react/react"
+            }
+        }
+    },
     "devops-console/ui/page-title": {
         "scope": "",
         "version": "",
         "mainFile": "index.ts",
         "rootDir": "devops/devops-console/ui/page-title",
+        "config": {
+            "teambit.react/react": {},
+            "teambit.envs/envs": {
+                "env": "teambit.react/react"
+            }
+        }
+    },
+    "devops-console/ui/pod-view": {
+        "scope": "",
+        "version": "",
+        "mainFile": "index.ts",
+        "rootDir": "devops/devops-console/ui/pod-view",
         "config": {
             "teambit.react/react": {},
             "teambit.envs/envs": {
@@ -201,6 +309,18 @@
             }
         }
     },
+    "devops-console/ui/repo-view": {
+        "scope": "",
+        "version": "",
+        "mainFile": "index.ts",
+        "rootDir": "devops/devops-console/ui/repo-view",
+        "config": {
+            "teambit.react/react": {},
+            "teambit.envs/envs": {
+                "env": "teambit.react/react"
+            }
+        }
+    },
     "devops-console/ui/search": {
         "scope": "",
         "version": "",
@@ -210,6 +330,18 @@
             "teambit.react/react": {},
             "teambit.envs/envs": {
                 "env": "teambit.react/react"
+            }
+        }
+    },
+    "test": {
+        "scope": "",
+        "version": "",
+        "mainFile": "index.ts",
+        "rootDir": "devops/test",
+        "config": {
+            "teambit.harmony/node": {},
+            "teambit.envs/envs": {
+                "env": "teambit.harmony/node"
             }
         }
     },

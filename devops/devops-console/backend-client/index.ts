@@ -1,1 +1,1 @@
-export { backendClient } from './backend-client';
+export { BackendClient, defaultClient } from './backend-client';

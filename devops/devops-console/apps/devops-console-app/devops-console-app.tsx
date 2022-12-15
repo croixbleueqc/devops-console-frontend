@@ -8,9 +8,10 @@ import Typography from '@mui/material/Typography';
 
 import { AuthenticationStateContext } from '@croixbleue/devops.devops-console.authentications.authentication-state';
 import { GlobalStateProvider } from '@croixbleue/devops.devops-console.global-state';
-import { RepositoryBitbucket } from '@croixbleue/devops.devops-console.repositories.repository-bitbucket';
+import { RepoView } from '@croixbleue/devops.devops-console.ui.repo-view';
 import {
   CdStatus,
+  K8sDeploymentStatus,
   ProjectMap,
   RepositoryDefinition,
   RepoStatus,
@@ -21,8 +22,22 @@ import { ProjectView } from '@croixbleue/devops.devops-console.ui.project-view';
 // import { AuthenticationOidc } from '@croixbleue/devops.devops-console.authentications.authentication-oidc';
 
 // TODO extract to a configuration module
+const cbqQuery = 'plugin_id=cbq';
 const baseUrl = 'http://localhost:5000/api/v2';
-const cdStatusUrl = (name: string) => `${baseUrl}/sccs/repositories/${name}/cd?plugin_id=cbq`;
+const devEnvironment = 'development';
+const cdStatusUrl = (name: string) => `${baseUrl}/sccs/repositories/${name}/cd?${cbqQuery}`;
+const k8sStatusReq = (name: string, environment: string) =>
+  new Request(`${baseUrl}/k8s/deployment_status/${name}/${environment}?${cbqQuery}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      user: '',
+      apikey: '',
+      author: 'my name <with.my@email.com>',
+    }),
+  });
 
 export type DevopsConsoleAppProps = {};
 
@@ -41,7 +56,7 @@ export function DevopsConsoleAppExample({}: DevopsConsoleAppProps) {
   // fetch list of repos and projects on mount
   useEffect(() => {
     Promise.all([
-      fetchAndSet(`${baseUrl}/sccs/repositories?plugin_id=cbq`, setRepositoryDefinitions),
+      fetchAndSet(`${baseUrl}/sccs/repositories?${cbqQuery}`, setRepositoryDefinitions),
       fetchAndSet(`${baseUrl}/sccs/projects`, setProjects),
     ]);
   }, []);
@@ -61,8 +76,8 @@ export function DevopsConsoleAppExample({}: DevopsConsoleAppProps) {
       return;
     }
     const definition = repositoryDefinitions[selectedRepoIdx];
-    fetchAndSet<CdStatus>(cdStatusUrl(definition.name)).then((cdStatus) => {
-      setRepoSelection([{ definition, cdStatus }]);
+    repoStatusFromName(definition.name).then((repoStatus) => {
+      setRepoSelection([repoStatus]);
     });
   }, [selectedRepoIdx]);
 
@@ -72,19 +87,9 @@ export function DevopsConsoleAppExample({}: DevopsConsoleAppProps) {
     }
     const project = projects[selectedProjectKey];
 
-    Promise.all(project.repositories.map((repo) => fetchAndSet<CdStatus>(cdStatusUrl(repo)))).then(
-      (cdStatuses) => {
-        const repoStatuses = cdStatuses.map((cd, idx) => {
-          const definition = repositoryDefinitions.find((r) => r.name == project.repositories[idx]);
-          if (!definition) {
-            throw new Error(`Repository ${project.repositories[idx]} not found`);
-          }
-          return { definition, cdStatus: cd } as RepoStatus;
-        });
-
-        setRepoSelection(repoStatuses);
-      }
-    );
+    Promise.all(
+      project.repositories.map<Promise<RepoStatus>>((repo) => repoStatusFromName(repo))
+    ).then((repoStatuses) => setRepoSelection(repoStatuses));
   }, [selectedProjectKey]);
 
   return (
@@ -132,7 +137,7 @@ export function DevopsConsoleAppExample({}: DevopsConsoleAppProps) {
       {!busy &&
         !!repoSelection &&
         (selectedRepoIdx != null ? (
-          <RepositoryBitbucket status={repoSelection[0]} />
+          <RepoView status={repoSelection[0]} />
         ) : selectedProjectKey != '' ? (
           <ProjectView projectConfig={projects[selectedProjectKey]} repoSelection={repoSelection} />
         ) : null)}
@@ -163,14 +168,34 @@ export function DevopsConsoleAppExample({}: DevopsConsoleAppProps) {
     </Container>
   );
 
-  function fetchAndSet<T>(url: string, setFn: ((d: T) => void) | null = null): Promise<T> {
+  function definitionFromRepoName(repo: string) {
+    const definition = repositoryDefinitions.find((r) => r.name == repo);
+    if (definition == null) {
+      throw new Error(`Repository ${repo} not found`);
+    }
+    return definition;
+  }
+
+  async function repoStatusFromName(repoName: string): Promise<RepoStatus> {
+    const definition = definitionFromRepoName(repoName);
+    const [cdStatus, k8sStatus] = await Promise.all([
+      fetchAndSet<CdStatus>(cdStatusUrl(definition.name)),
+      fetchAndSet<K8sDeploymentStatus>(k8sStatusReq(definition.name, devEnvironment)),
+    ]);
+    return { definition, cdStatus, k8sStatus } as RepoStatus;
+  }
+
+  async function fetchAndSet<T>(
+    input: string | Request,
+    setFn: ((d: T) => void) | null = null
+  ): Promise<T> {
     imBusy();
-    return fetch(url)
+    return fetch(input)
       .then((response) => {
         if (response.ok) {
           return response.json();
         }
-        throw new Error(`Error ${response.status} ${response.statusText} for ${url}`);
+        throw new Error(`Error ${response.status} ${response.statusText} for ${input}`);
       })
       .then((data) => {
         if (setFn !== null) {
