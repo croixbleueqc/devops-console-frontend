@@ -9,6 +9,6 @@ export function Repository() {
   return <RepoView status={repoStatus} />;
 }
 
-export function repositoryLoader({ params }) {
-  return defaultClient.fetch(`/sccs/repositories/${params.name}`);
+export async function repositoryLoader({ params }) {
+  return defaultClient.getRepoStatus(params.name);
 }

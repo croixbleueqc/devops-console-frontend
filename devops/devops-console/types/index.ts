@@ -5,9 +5,9 @@ export type {
   ContainerStatus,
   K8sDeploymentStatus,
   Pod,
-  Project,
+  ProjectConfig,
   ProjectMap,
-  RepositoryDefinition,
+  RepositoryDescription,
   RepoStatus,
 } from './types';
 export type { Overwrite } from './utils';

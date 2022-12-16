@@ -1,46 +1,36 @@
-import React, { ReactNode, useRef } from 'react';
+import React, { ReactNode, useRef, useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { Search, SearchOption } from '@croixbleue/devops.devops-console.ui.search';
 import { ProjectSelect } from '@croixbleue/devops.devops-console.ui.project-select';
-import { ProjectMap, RepositoryDefinition } from '@croixbleue/devops.devops-console.types';
-import { Badge, Box, IconButton, Menu, MenuItem } from '@mui/material';
-import AccountCircle from '@mui/icons-material/AccountCircle';
+import { ProjectMap, RepositoryDescription } from '@croixbleue/devops.devops-console.types';
+import { Box, IconButton, Menu, MenuItem } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 export type HeaderBarProps = {
   appName?: string;
   children?: ReactNode;
   projects: ProjectMap;
-  selectedProjectKey?: string;
-  repositories: RepositoryDefinition[];
-  selectedRepoIdx: number | null;
+  repositories: RepositoryDescription[];
   onSearch?: (repoIdx: number | null) => void;
   onProjectChange?: (projectKey: string) => void;
-  navigation: any;
 };
 
-export function HeaderBar({
-  appName,
-  projects,
-  selectedProjectKey,
-  repositories,
-  selectedRepoIdx,
-  onSearch = () => {},
-  onProjectChange = (projectKey: string) => console.log('project changed', projectKey),
-  navigation,
-  children,
-}: HeaderBarProps) {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const anchorEl = useRef(null);
+export function HeaderBar({ appName, projects, repositories, children }: HeaderBarProps) {
   const searchOptions: SearchOption[] = repositories
     .sort(({ name: a }, { name: b }) => a.localeCompare(b))
-    .map(({ name }, idx) => ({ label: name, value: idx }));
+    .map(({ name, slug }) => ({ label: name, value: slug }));
+  const navigate = useNavigate();
+  const onSearch = (repoSlug: string) => navigate(`/repository/${repoSlug}`);
+  const onProjectChange = (projectKey: string) => navigate(`/project/${projectKey}`);
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const handleSettingsOpen = () => setIsMenuOpen(true);
   const handleMenuClose = () => setIsMenuOpen(false);
   const settingsMenuId = 'settings-menu';
+  const anchorEl = useRef(null);
   const renderSettingsMenu = (
     <Menu
       anchorEl={anchorEl.current}
@@ -84,16 +74,8 @@ export function HeaderBar({
             {appName ?? 'DevOps Console'}
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
-          <ProjectSelect
-            selectedProjectKey={selectedProjectKey ?? ''}
-            projects={projects}
-            onChange={onProjectChange}
-          />
-          <Search
-            value={searchOptions.find((o) => o.value == selectedRepoIdx) ?? null}
-            options={searchOptions}
-            onChange={onSearch}
-          />
+          <ProjectSelect projects={projects} onChange={onProjectChange} />
+          <Search options={searchOptions} onChange={onSearch} />
           {children}
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
             <IconButton

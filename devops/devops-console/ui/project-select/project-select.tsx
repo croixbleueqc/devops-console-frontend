@@ -15,7 +15,7 @@ export type ProjectSelectProps = Overwrite<
   SelectProps,
   {
     projects: ProjectMap;
-    selectedProjectKey: string;
+    selectedProjectKey?: string;
     onChange: (projectKey: string) => void;
   }
 >;
@@ -38,7 +38,7 @@ export function ProjectSelect({
         <Select
           {...props}
           id="project-select"
-          value={selectedProjectKey}
+          value={selectedProjectKey ?? ''}
           size="small"
           onChange={handleChange}
           label="Projects"

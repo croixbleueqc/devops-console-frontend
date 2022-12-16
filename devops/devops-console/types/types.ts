@@ -1,21 +1,21 @@
-import { ActionFunction, LoaderFunction, ShouldRevalidateFunction } from 'react-router-dom';
-
 export type ProjectEnvironments = { enabled: boolean; name: string }[];
 
-export type Project = {
+export type ProjectConfig = {
   name: string;
   repositories: string[];
   environments: ProjectEnvironments;
 };
 
 export type ProjectMap = {
-  [key: string]: Project;
+  [key: string]: ProjectConfig;
 };
 
-export type RepositoryDefinition = {
+export type RepositoryDescription = {
   name: string;
   slug: string;
   url: string;
+  /** environment: a list of deployment environments where the repository is active */
+  environment: string[];
   remoteProvider?: 'bitbucket' | 'github';
 };
 
@@ -40,6 +40,7 @@ export type Pod = {
 };
 
 export type K8sDeploymentStatus = {
+  environment: string;
   namespace: string;
   cluster: string;
   permission: 'read' | 'write';
@@ -47,7 +48,7 @@ export type K8sDeploymentStatus = {
 };
 
 export type RepoStatus = {
-  definition: RepositoryDefinition;
+  definition: RepositoryDescription;
   cdStatus: CdStatus;
-  k8sStatus: K8sDeploymentStatus;
+  k8sStatus: K8sDeploymentStatus[];
 };

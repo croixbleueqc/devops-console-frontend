@@ -9,10 +9,14 @@ import { Box } from '@mui/material';
 export type ProjectViewProps = {
   k8sViews?: ReactNode;
   projectConfig: Project;
-  repoSelection: RepoStatus[];
+  repoStatuses: RepoStatus[];
 };
 
-export function ProjectView({ projectConfig, repoSelection, k8sViews }: ProjectViewProps) {
+export function ProjectView({
+  projectConfig,
+  repoStatuses: repoSelection,
+  k8sViews,
+}: ProjectViewProps) {
   return (
     <Box sx={{ width: '100%' }}>
       <PageTitle>

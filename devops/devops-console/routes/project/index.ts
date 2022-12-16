@@ -1,2 +1,1 @@
-export { Project } from './project';
-export type { ProjectProps } from './project';
+export { Project, projectLoader } from './project';

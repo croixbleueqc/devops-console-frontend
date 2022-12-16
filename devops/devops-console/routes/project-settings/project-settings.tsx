@@ -1,16 +1,9 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 
-export type ProjectSettingsProps = {
-  /**
-   * a node to be rendered in the special component.
-   */
-  children?: ReactNode;
-};
+export function ProjectSettings() {
+  return <div>TODO</div>;
+}
 
-export function ProjectSettings({ children }: ProjectSettingsProps) {
-  return (
-    <div>
-      {children}
-    </div>
-  );
+export async function projectSettingsLoader({ params }) {
+  return {};
 }

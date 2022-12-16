@@ -1,16 +1,9 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 
-export type UserSettingsProps = {
-  /**
-   * a node to be rendered in the special component.
-   */
-  children?: ReactNode;
-};
+export function UserSettings() {
+  return <div>TODO</div>;
+}
 
-export function UserSettings({ children }: UserSettingsProps) {
-  return (
-    <div>
-      {children}
-    </div>
-  );
+export async function userSettingsLoader({ params }) {
+  return {};
 }

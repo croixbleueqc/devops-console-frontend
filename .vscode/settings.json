@@ -4,5 +4,8 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.detectIndentation": true,
     "files.insertFinalNewline": true,
-    "mdx-preview.preview.useVscodeMarkdownStyles": false
+    "mdx-preview.preview.useVscodeMarkdownStyles": false,
+    "[dotenv]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format"
+    }
 }

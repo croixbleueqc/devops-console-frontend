@@ -1,16 +1,20 @@
-import React, { ReactNode } from 'react';
+import { defaultClient } from '@croixbleue/devops.devops-console.backend-client';
+import { ProjectConfig, RepoStatus } from '@croixbleue/devops.devops-console.types';
+import { ProjectView } from '@croixbleue/devops.devops-console.ui.project-view';
+import React from 'react';
+import { useLoaderData } from 'react-router-dom';
 
-export type ProjectProps = {
-  /**
-   * a node to be rendered in the special component.
-   */
-  children?: ReactNode;
-};
+type ProjectData = { projectConfig: ProjectConfig; repoStatuses: RepoStatus[] };
 
-export function Project({ children }: ProjectProps) {
-  return (
-    <div>
-      {children}
-    </div>
+export function Project() {
+  const { projectConfig, repoStatuses } = useLoaderData() as ProjectData;
+  return <ProjectView projectConfig={projectConfig} repoStatuses={repoStatuses} />;
+}
+
+export async function projectLoader({ params }): Promise<ProjectData> {
+  const projectConfig = await defaultClient.getProjectConfig(params.key);
+  const repoStatuses = await Promise.all(
+    projectConfig.repositories.map((repoName) => defaultClient.getRepoStatus(repoName))
   );
+  return { projectConfig, repoStatuses };
 }
